@@ -1,0 +1,21 @@
+{% load extras %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{{ 'common/plugins/bootstrap/css/bootstrap.css'|static_url }}">
+  <link rel="stylesheet" type="text/css" href="{{ 'eshop/css/main.min.css'|static_url }}">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!--[if lte IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]-->
+  {% block css %}{% endblock %}
+</head>
+<body>
+{% csrf_token %}
+{% block content %}{% endblock %}
+{% block modal %}{% endblock %}
+</body>
+<script src="{{ 'common/plugins/jquery-1.11.3/jquery.js'|static_url }}"></script>
+<script src="{{ 'common/plugins/bootstrap/js/bootstrap.js'|static_url }}"></script>
+{% block js %}{% endblock %}
+</html>

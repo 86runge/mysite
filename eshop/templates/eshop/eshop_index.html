@@ -1,0 +1,781 @@
+{% extends "eshop/eshop_base.html" %}
+{% load extras %}
+{% block title %}首页{% endblock %}
+{% block css %}{% endblock %}
+{% block content %}
+    <div id="wrap">
+        <div id="header">
+            <div id="sitenav">
+                <div id="sitenavbox" class="main-w clearfix">
+                    <div id="loginbar" class="pull-left">
+                        <span class="mr10">欢迎来到XXX网站</span>
+                        <a href="" class="mr5">登录</a>
+                        <a href="" class="mr5">注册</a>
+                    </div>
+                    <div id="sitemap" class="pull-right space">
+                        <a href="#" class="ml5">会员中心</a>
+                        <a href="#" class="ml5 bl pl5">收藏夹</a>
+                        <a href="#" class="ml5 bl pl5">购物车</a>
+                        <a href="#" class="ml5 bl pl5">联系客服</a>
+                        <a href="#" class="ml5 bl pl5">切换主题</a>
+                        <a href="#" class="ml5 bl pl5">前往后台</a>
+                    </div>
+                </div>
+            </div>
+            <div id="nav_top" class="clearfix main-w">
+                <div id="logo" class="pull-left">
+                    <div id="logobox">
+                        <h1 class="m0">
+                            <img src="{{ 'common/images/logo.jpg'|static_url }}" alt="图片未找到">
+                        </h1>
+                    </div>
+                </div>
+                <div id="searchbar" class="pull-left ml50">
+                    <div id="searchbox" class="pt30">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchinput" placeholder="">
+                            <div class="input-group-addon pointer" id="searchbtn">搜索</div>
+                        </div>
+                        <div id="searchprompt" class="mt10">
+                            <a href="javascript:;" class="mr10">衣服</a><a href="javascript:;" class="mr10">家电</a><a href="javascript:;" class="mr10">数码</a><a href="javascript:;" class="mr10">户外</a><a href="javascript:;" class="mr10">母婴</a><a href="javascript:;" class="mr10">衣服</a><a href="javascript:;" class="mr10">家电</a><a href="javascript:;" class="mr10">数码</a><a href="javascript:;" class="mr10">户外</a><a href="javascript:;" class="mr10">母婴</a><a href="javascript:;" class="mr10">其他</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="searchbar_right" class="pull-left ml50">
+                    <div id="my_cart" class="h34 lh34 mt30 b br4 tc pointer">
+                        我的购物车
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="nav" class="h40">
+                <div id="navbox" class="main-w auto  clearfix">
+                    <h2 class="pull-left lh40 m0 tc white">全部商品分类</h2>
+                    <ul class="pull-left clearfix lh40 m0 p0 white">
+                        <li class="pull-left ml20"><a href="javascript:;">首页</a></li>
+                        <li class="pull-left"><a href="javascript:;">热销</a></li>
+                        <li class="pull-left"><a href="javascript:;">精品</a></li>
+                        <li class="pull-left"><a href="javascript:;">活动</a></li>
+                        <li class="pull-left"><a href="javascript:;">咨询</a></li>
+                        <li class="pull-left"><a href="javascript:;">招商</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="showcase" class="main-w auto clearfix">
+                <div id="menu" class="pull-left">
+                    <ul>
+                        <li><a href="javaScript:;">家用电器</a></li>
+                        <li><a href="javaScript:;">手机</a><a href="javaScript:;">运营商</a><a href="javaScript:;">数码</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑电</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑电</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑电</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                        <li><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a><a href="javaScript:;">电脑</a><a href="javaScript:;">办公</a></li>
+                    </ul>
+                </div>
+                <div id="increservice" class="pull-right">
+                    <div id="news" class="mt25">
+                        <h4 class="bb">新闻资讯</h4>
+                        <ul class="lh20">
+                            <li class="ell"><a href="javascript:;">1.从上面的Html代码中我们可以明显得看出</a></li>
+                            <li class="ell"><a href="javascript:;">1.从上面的Html代码中我们可以明显得看出</a></li>
+                            <li class="ell"><a href="javascript:;">1.从上面的Html代码中我们可以明显得看出</a></li>
+                            <li class="ell"><a href="javascript:;">1.从上面的Html代码中我们可以明显得看出</a></li>
+                            <li class="ell"><a href="javascript:;">1.从上面的Html代码中我们可以明显得看出</a></li>
+                        </ul>
+                    </div>
+                    <div id="feedback">
+                        <h4 class="bb">咨询反馈</h4>
+                        <div>
+                            <textarea class="form-control" cols="30" rows="3"></textarea>
+                            <button class="btn btn-primary btn-xs mt10">提交</button>
+                        </div>
+                    </div>
+                    <div id="relevantservice">
+                        <h4 class="bb">精彩展示</h4>
+                        <div>
+                            <img src="{{ 'eshop/images/sixinai.jpg'|static_url }}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="carouselbox">
+                    <div id="carousel_content" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel_content" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel_content" data-slide-to="1"></li>
+                            <li data-target="#carousel_content" data-slide-to="2"></li>
+                            <li data-target="#carousel_content" data-slide-to="3"></li>
+                            <li data-target="#carousel_content" data-slide-to="4"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="{{ 'eshop/images/xx1.jpg'|static_url }}" alt="图片未找到">
+                                <div class="carousel-caption">
+                                    这是第一张图片
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{{ 'eshop/images/xx2.jpg'|static_url }}" alt="图片未找到">
+                                <div class="carousel-caption">
+                                    这是第二张图片
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{{ 'eshop/images/xx3.jpg'|static_url }}" alt="图片未找到">
+                                <div class="carousel-caption">
+                                    这是第三张图片
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{{ 'eshop/images/xx4.jpg'|static_url }}" alt="图片未找到">
+                                <div class="carousel-caption">
+                                    这是第四张图片
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="{{ 'eshop/images/xx5.jpg'|static_url }}" alt="图片未找到">
+                                <div class="carousel-caption">
+                                    这是第五张图片
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel_content" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+                        <a class="right carousel-control" href="#carousel_content" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+                    </div>
+                </div>
+                <div id="banner" class="mt15">
+                    <marquee>以上是为了区别不同浏览器的不同效果，我把色码区别开了。为了兼容所有浏览器的相同效果的css3渐变色，你可以把色码调试成一样。</marquee>
+                </div>
+            </div>
+            <div id="hot" class="main-w">
+                <div class="clearfix">
+                    <h3 class="pull-left">热门推荐</h3>
+                    <a href="JavaScript:;" class="pull-right lh40">更多</a>
+                </div>
+                <div class="tab-box">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#home" data-toggle="tab">菜鸟教程</a>
+                        </li>
+                        <li><a href="#ios" data-toggle="tab">iOS</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Java<b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                                <li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+                                <li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content mt15">
+                        <div class="tab-pane fade in active" id="home">
+                            <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                            <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="ios">
+                            <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                            <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="jmeter">
+                            <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+                            <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                        </div>
+                        <div class="tab-pane fade" id="ejb">
+                            <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+                            </p>
+                            <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="item_content" class="main-w">
+                <div class="item-bar">
+                    <h3 class="bb pb5">衣服</h3>
+                    <div class="quick-select">
+                        <a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a>
+                    </div>
+                    <div class="item-box mt20">
+                        <ul class="clearfix">
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item-bar">
+                    <h3 class="bb pb5">家电</h3>
+                    <div class="quick-select">
+                        <a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a>
+                    </div>
+                    <div class="item-box mt20">
+                        <ul class="clearfix">
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item-bar">
+                    <h3 class="bb pb5">家电</h3>
+                    <div class="quick-select">
+                        <a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a>
+                    </div>
+                    <div class="item-box mt20">
+                        <ul class="clearfix">
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item-bar">
+                    <h3 class="bb pb5">家电</h3>
+                    <div class="quick-select">
+                        <a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a><a href="javascript:;">连衣裙</a>
+                    </div>
+                    <div class="item-box mt20">
+                        <ul class="clearfix">
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="b p15 pull-left">
+                                <a href="javascript:;" title="" class="img-box">
+                                    <img src="{{ 'eshop/images/y1.jpg'|static_url }}" alt="">
+                                </a>
+                                <div class="good-describe">
+                                    <p><a href="javascript:;">价格: ￥50.00</a><a href="javascript:;" class="pull-right">月销量 305件</a></p>
+                                    <p><a href="javascript:;">相似商品</a></p>
+                                    <p class="clearfix">
+                                        <button class="btn btn-warning btn-xs pull-right ml10">购买</button>
+                                        <button class="btn btn-warning btn-xs pull-right">加入购物车</button>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="pt20 pb20 bt">
+            <div id="friendlink" class="main-w space pb5 bb">
+                <a href="javascript:;">关于淘宝</a><a href="javascript:;">合作伙伴</a><a href="javascript:;">营销中心</a><a href="javascript:;">廉正举报</a><a href="javascript:;">联系客服</a><a href="javascript:;">开放平台</a><a href="javascript:;">诚征英才</a><a href="javascript:;">联系我们</a><a href="javascript:;">网站地图</a><a href="javascript:;">法律声明及隐私权政策</a><a href="javascript:;">知识产权</a>
+            </div>
+            <div id="partner" class="main-w mt5 space">
+                <a href="javascript:;">阿里巴巴集团</a><a href="javascript:;">淘宝网</a><a href="javascript:;">天猫</a><a href="javascript:;">聚划算</a><a href="javascript:;">全球速卖通</a><a href="javascript:;">大麦网</a><a href="javascript:;">钉钉</a><a href="javascript:;">支付宝</a><a href="javascript:;">优酷</a><a href="javascript:;">土豆</a><a href="javascript:;">阿里健康</a><a href="javascript:;">阿里影业</a><a href="javascript:;">阿里体育</a><a href="javascript:;">网商银行</a><a href="javascript:;">阿里巴巴集团</a><a href="javascript:;">淘宝网</a><a href="javascript:;">天猫</a><a href="javascript:;">聚划算</a><a href="javascript:;">全球速卖通</a><a href="javascript:;">大麦网</a><a href="javascript:;">钉钉</a><a href="javascript:;">支付宝</a><a href="javascript:;">优酷</a><a href="javascript:;">土豆</a><a href="javascript:;">阿里健康</a><a href="javascript:;">阿里影业</a><a href="javascript:;">阿里体育</a><a href="javascript:;">网商银行</a>
+            </div>
+            <div id="copyright" class="tc mt10">
+                <span>@Copyright@ 2004-2017</span><span>武汉派生科技有限公司版权所有</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block modal %}{% endblock %}
+{% block js %}{% endblock %}
