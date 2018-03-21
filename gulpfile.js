@@ -48,18 +48,24 @@ gulp.task('less', function () {
 
 // js文件, js压缩
 gulp.task('js', function () {
-    gulp.src([url_eshop + 'js/*.js'])
+    gulp.src([url_eshop + 'js_dev/*.js'])
         .pipe(uglify(js_option))
         .pipe(rename(function (path) {
             path.basename += '.min';
         }))
-        .pipe(gulp.dest(url_eshop + 'js_dev'));
-    gulp.src([url_backend + 'js/*.js'])
+        .pipe(gulp.dest(url_eshop + 'js'));
+    gulp.src([url_eshop + 'js_dev/service/*.js'])
         .pipe(uglify(js_option))
         .pipe(rename(function (path) {
             path.basename += '.min';
         }))
-        .pipe(gulp.dest(url_backend + 'js_dev'));
+        .pipe(gulp.dest(url_eshop + 'js/service'));
+    gulp.src([url_backend + 'js_dev/*.js'])
+        .pipe(uglify(js_option))
+        .pipe(rename(function (path) {
+            path.basename += '.min';
+        }))
+        .pipe(gulp.dest(url_backend + 'js'));
 });
 
 
@@ -70,8 +76,8 @@ gulp.task('js', function () {
 // });
 
 gulp.task('watch', function () {
-    gulp.watch([url_eshop + 'less/*.less', url_backend + 'less/*.less'], ['less']);
-    gulp.watch([url_eshop + 'js/*.js', url_backend + 'js/*.js'], ['js']);
+    gulp.watch([url_eshop + 'less/*.less', url_backend + 'less/*.less', url_common + 'css/*.css'], ['less']);
+    gulp.watch([url_eshop + 'js_dev/**/*.js', url_backend + 'js_dev/**/*.js'], ['js']);
 });
 
 // 启动任务

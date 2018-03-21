@@ -11,10 +11,10 @@ MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-# STATIC_URL = 'http://127.0.0.1:80/static/'  # 本地 nginx 端口为8080
+# STATIC_URL = 'http://127.0.0.1:80/static/'  # 本地 apache 端口为80
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
-# MEDIA_URL = 'http://127.0.0.1:80/media/'  # 本地 nginx 端口为8080
+# MEDIA_URL = 'http://127.0.0.1:80/media/'  # 本地 apache 端口为80
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DATABASES = {

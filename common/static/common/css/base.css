@@ -1,25 +1,25 @@
- /* 该样式基于bootstrap样式进行部分调整 */
+/* 该样式基于bootstrap样式进行部分调整 */
 
 /*页面占满全屏*/
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 #wrap {
-    min-height: 100%;
-    position: relative;
+  min-height: 100%;
+  position: relative;
 }
 
 /* body 样式 */
 body {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 /*页面主体宽度*/
 .main-w {
-    width: var(--main-width);
-    margin: 0 auto;
+  width: var(--main-width);
+  margin: 0 auto;
 }
 
 /*a标签样式*/
@@ -37,30 +37,31 @@ a:focus {
 
 /*ul,ol*/
 ul, ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 /*去掉行内元素的间距*/
 .space {
-    letter-spacing: -3px;
+  letter-spacing: -3px;
 }
+
 .space a,
 .space span {
-    letter-spacing: 0;
+  letter-spacing: 0;
 }
 
 /*按钮鼠标手*/
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /*文本溢出*/
 .ell {
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /*图片、文本水平居中*/
@@ -71,40 +72,49 @@ ul, ol {
 
 /* 块状元素水平居中 */
 .auto {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*垂直水平居中*/
 /*父级元素*/
-.pa{
-    position: relative;
-}
+/*.parent {*/
+  /*position: relative;*/
+/*}*/
+
 /*子级元素*/
-.ch{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+.ch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 /*表单样式*/
 .form-control.long {
-    width: 500px;
+  width: 500px;
 }
 
 .form-control.middle {
-    width: 200px;
+  width: 200px;
 }
 
 .form-control.short {
-    width: 80px;
+  width: 80px;
 }
 
 /*固定textarea大小*/
 textarea {
-    resize: none;
+  resize: none;
 }
 
 /* 按钮样式 */
+.btn-s1 {
+
+}
+
+/*表单验证--validation*/
+label.error {
+  display: block;
+}

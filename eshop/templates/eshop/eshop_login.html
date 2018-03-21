@@ -1,11 +1,45 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <title>电子商城--登录</title>
-</head>
-<body>
-<h1>登录页面</h1>
-</body>
-</html>
+{% extends "eshop/eshop_base.html" %}
+{% load extras %}
+{% block title %}用户登录{% endblock %}
+{% block css %}{% endblock %}
+
+{% block header %}
+  <div id="login_register_bar">
+    <a href="{% url 'eshop:index' %}" class="pull-left">
+      <h1 class="m0">
+        <img src="{{ 'common/images/logo.jpg'|static_url }}" class="h100 db" alt="图片未找到">
+      </h1>
+    </a>
+    <h2 class="pull-left mt30">用户登录</h2>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="login_register_box">
+    <form action="" class="form-horizontal">
+      <div class="form-group">
+        <label for="" class="col-md-3 control-label">用户名：</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control middle" id="inputPassword3" placeholder="用户名">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control middle" id="inputPassword3" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+          <button class="btn btn-primary">登录</button>
+          <a href="{% url 'eshop:forget_password' %}" class="ml30">忘记密码</a>
+          <p class="mt15">还没有账号，前往<a href="{% url 'eshop:register' %}">注册</a></p>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block modal %}{% endblock %}
+{% block js %}{% endblock %}
