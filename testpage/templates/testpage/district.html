@@ -1,0 +1,27 @@
+{% load extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>地区页面测试</title>
+</head>
+<body>
+<div id="district_widget">
+  <select name="province"></select>
+  <select name="city"></select>
+  <select name="area"></select>
+  <button id="btn_refresh">刷新</button>
+</div>
+</body>
+<script type="text/javascript" src="{{ 'plugins/jquery/jquery-3.2.1.min.js'|static_url }}"></script>
+<script type="text/javascript" id="js_citys" src="{{ 'district/js/jquery.citys.js'|static_url }}"
+        data_src="{{ 'district/js/list.json'|static_url }}"
+        extras="{{ 'district/js/extras.json'|static_url }}"></script>
+<script type="text/javascript">
+    $(function ($) {
+        $('#btn_refresh').click(function () {
+            $('#district_widget').city({code: 421202});
+        });
+    });
+</script>
+</html>

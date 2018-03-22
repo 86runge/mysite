@@ -55,3 +55,17 @@ jQuery.validator.addMethod("isUrl", function (value, element) {
     return this.optional(element) || (reg_url.test(value));
 }, "请填写有效网络链接");
 
+
+// js获取简单验证码
+jQuery.extend({
+    get_code: function (len) {
+        var code = "";
+        var codeLength = len || 4; //验证码的长度
+        var codeChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']; //所有候选组成验证码的字符，当然也可以用中文的
+        for (var i = 0; i < codeLength; i++) {
+            var charNum = Math.floor(Math.random() * 52);
+            code += codeChars[charNum];
+        }
+        return code
+    }
+});

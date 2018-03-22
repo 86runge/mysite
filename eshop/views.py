@@ -1,13 +1,17 @@
 # coding=UTF-8
+import datetime
+import json
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
-from django.http import Http404
+from django.contrib.auth.hashers import make_password
+from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 
 from django.views.generic import TemplateView
 
 import logging
 
-from user.form import UserRegisterForm, UserLoginForm
 from user.models import User
 
 logger = logging.getLogger('wxp.%s' % __name__)
@@ -42,14 +46,12 @@ class LoginView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         try:
-            userform = UserLoginForm(request.POST)
-            if userform.is_valid():
-                username = userform.cleaned_data['username']
-                password = userform.cleaned_data['password']
-                user = authenticate(request=request, username=username, password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('eshop:index')
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(request=request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'status': status, 'msg': msg, 'redirect': 'eshop:index'})
             else:
                 return render(request, self.template_name, {
                     'show_error': True
@@ -69,6 +71,7 @@ class LogoutView(TemplateView):
         return redirect('eshop:index')
 
 
+# @method_decorator(login_required, name='dispatch')
 class RegisterView(TemplateView):
     """
     注册页面
@@ -84,26 +87,25 @@ class RegisterView(TemplateView):
 
     def post(self, request):
         try:
-            userform = UserRegisterForm(request.POST)
-            if userform.is_valid():
-                username = userform.cleaned_data['username']
-                password = userform.cleaned_data['password']
-                verify_code = userform.cleaned_data['verify_code']
-                nick = userform.cleaned_data['nick']
-                phone = userform.cleaned_data['phone']
-                email = userform.cleaned_data['email']
+            if request.POST:
+                username = request.POST['username']
+                password = request.POST['password']
+                verify_code = request.POST['verify_code']
+                nick = request.POST['nick']
+                phone = request.POST['phone']
+                email = request.POST['email']
+                date_joined = datetime.datetime.now()
                 User.objects.create(
                     username=username,
-                    password=password,
+                    password=make_password(password),
                     verify_code=verify_code,
                     nick=nick,
                     phone=phone,
-                    email=email
+                    email=email,
+                    date_joined=date_joined
                 )
-                return redirect('eshop:index')
-            else:
-                return render(request, self.template_name, {
-                    'show_error': True
+                return JsonResponse({
+                    'status': 1
                 })
         except Exception as e:
             logger.exception(e)

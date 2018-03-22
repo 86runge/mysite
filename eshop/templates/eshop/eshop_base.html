@@ -42,11 +42,14 @@
 {% comment %}模态框开始{% endcomment %}
 {% block modal %}{% endblock %}
 {% comment %}模态框结束{% endcomment %}
-</body>
 {% comment %}js加载开始{% endcomment %}
 <script src="{{ 'common/plugins/require.js'|static_url }}" defer async="true" data-main="{{ 'eshop/js/main.min.js'|static_url }}"></script>
-{#<script src="{{ 'common/plugins/jquery-1.11.3/jquery.js'|static_url }}"></script>#}
-{#<script src="{{ 'common/plugins/bootstrap/js/bootstrap.js'|static_url }}"></script>#}
+{#<script src="{{ 'common/plugins/jquery/jquery.min.js'|static_url }}"></script>#}
+{#<script src="{{ 'common/plugins/bootstrap/js/bootstrap.min.js'|static_url }}"></script>#}
+{#<script src="{{ 'common/plugins/jquery-validation/jquery.validate.min.js'|static_url }}"></script>#}
+{#<script src="{{ 'common/js/common.js'|static_url }}"></script>#}
 {% block js %}{% endblock %}
 {% comment %}js加载结束{% endcomment %}
+</body>
+
 </html>

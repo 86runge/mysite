@@ -5,9 +5,9 @@
 // 这个对象的paths属性指定各个模块的加载路径。
 
 var common_url = "/static/common/";
-requirejs.config({
+require.config({
     paths: {
-        "jquery": common_url + "plugins/jquery-1.11.3/jquery.min",
+        "jquery": common_url + "plugins/jquery/jquery.min",
         "bootstrap": common_url + "plugins/bootstrap/js/bootstrap.min",
         "validation": common_url + "plugins/jquery-validation/jquery.validate.min",
         "common": common_url + "js/common"
@@ -22,7 +22,8 @@ requirejs.config({
         "common": {
             deps: ['jquery', 'validation']
         }
-    }
+    },
+    waitSeconds: 0
 });
 
 // 另一种则是直接改变基目录（baseUrl）。
@@ -59,11 +60,10 @@ requirejs.config({
 
 
 // 按需加载模块
-require(['require', 'jquery', 'bootstrap', 'common'], function (require, $) {
+require(['require', 'jquery', 'bootstrap', 'common'], function (require, $, bootstrap, common) {
     // 载入jquery,bootstrap等公共组件
 
     var current_model = $('body').attr('id');
-    console.log(current_model);
     if (current_model) {
         require(['./service/' + current_model + '.min'], function (X) {
             X.init();
