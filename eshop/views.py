@@ -1,10 +1,8 @@
 # coding=UTF-8
 import datetime
-import json
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.hashers import make_password
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 
@@ -51,7 +49,7 @@ class LoginView(TemplateView):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return JsonResponse({'status': status, 'msg': msg, 'redirect': 'eshop:index'})
+                return redirect('eshop:index')
             else:
                 return render(request, self.template_name, {
                     'show_error': True
@@ -87,26 +85,19 @@ class RegisterView(TemplateView):
 
     def post(self, request):
         try:
-            if request.POST:
-                username = request.POST['username']
-                password = request.POST['password']
-                verify_code = request.POST['verify_code']
-                nick = request.POST['nick']
-                phone = request.POST['phone']
-                email = request.POST['email']
-                date_joined = datetime.datetime.now()
-                User.objects.create(
-                    username=username,
-                    password=make_password(password),
-                    verify_code=verify_code,
-                    nick=nick,
-                    phone=phone,
-                    email=email,
-                    date_joined=date_joined
-                )
-                return JsonResponse({
-                    'status': 1
-                })
+            user_data = {
+                'username': request.POST['username'],
+                'password': request.POST['password'],
+                'verify_code': request.POST['verify_code'],
+                'nick': request.POST['nick'],
+                'phone': request.POST['phone'],
+                'email': request.POST['email'],
+                'date_joined': datetime.datetime.now()
+            }
+            User.objects.create_user(**user_data)
+            return JsonResponse({
+                'status': 1
+            })
         except Exception as e:
             logger.exception(e)
             raise Http404

@@ -61,6 +61,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'user.User'
+AUTHENTICATION_BACKENDS = [
+    'user.backends.MyModelBackend',
+]
+
+LOGIN_URL = '/index/'
+LOGOUT_REDIRECT_URL = LOGIN_URL
+SESSION_COOKIE_AGE = 12 * 60 * 60
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
@@ -148,7 +157,10 @@ SHORT_DATETIME_FORMAT = 'Y-m-d H:i:s'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 登录
 LOGGING = {
@@ -196,6 +208,18 @@ LOGGING = {
         },
     },
 }
+
+# ====================================
+# 文件上传基础配置
+# ====================================
+# 默认限制文件大小500KB
+UPLOAD_DEFAULT_SIZE = 500 * 1024
+# 最大文件大小10M
+UPLOAD_MAX_SIZE = 10485760
+# 默认上传路径 media/tmp目录
+UPLOAD_DEFAULT_FOLDER = "tmp/"
+# 默认的打包文件存放目录
+ZIP_DEFAULT_FOLDER = "zip_tmp/"
 
 try:
     from .settings_dev import *

@@ -47,7 +47,7 @@ class Group(models.Model):
     name = models.CharField(_(u'群名称'), max_length=80, unique=True)
     permissions = models.ManyToManyField(Permission, verbose_name=_(u'群权限'), blank=True, )
     is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'用户群激活后权限才会生效'), )
-    created = models.DateTimeField(_(u'创建时间'), default=timezone.localtime)
+    created = models.DateTimeField(_(u'创建时间'), auto_now_add=True)
     notes = models.TextField(_(u'备注'), default=True)
 
     objects = GroupManager()
@@ -151,9 +151,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     nick = models.CharField(_(u'昵称'), max_length=150, blank=True)
     phone = models.CharField(_(u'电话'), max_length=20)
     email = models.EmailField(_(u'邮箱'), blank=True)
+    verify_code = models.CharField(_(u'验证码'), max_length=4)  # 4位验证码
     is_staff = models.BooleanField(_(u'内部职员'), default=False, help_text=_(u'只有内部职员可以登录系统管理后台'), )
     is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'用户激活后方可登录'), )
-    date_joined = models.DateTimeField(_(u'注册时间'), default=timezone.localtime)
+    date_joined = models.DateTimeField(_(u'注册时间'), auto_now_add=True)
 
     objects = UserManager()
 
@@ -188,7 +189,7 @@ class Department(models.Model):
     """
     name = models.CharField(_(u'部门名称'), max_length=50, unique=True)
     is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'失效后不会成为部门的可选项'), )
-    created = models.DateTimeField(_(u'创建时间'), default=timezone.localtime)
+    created = models.DateTimeField(_(u'创建时间'), auto_now_add=True)
     notes = models.TextField(_(u'备注'), default=True)
 
 
@@ -200,7 +201,7 @@ class Role(models.Model):
     groups = models.ManyToManyField(Group, verbose_name=_(u'用户群'), blank=True, help_text=_(u'角色拥有其所在用户群上绑定的所有权限'),
                                     related_name="role_set", related_query_name="role", )
     is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'失效后不会成为角色的可选项'), )
-    created = models.DateTimeField(_(u'创建时间'), default=timezone.localtime)
+    created = models.DateTimeField(_(u'创建时间'), auto_now_add=True)
     notes = models.TextField(_(u'备注'), default=True)
 
 
@@ -248,7 +249,7 @@ class Overdraft(models.Model):
     """
     customer = models.OneToOneField(Customer, models.CASCADE, verbose_name=u'客户')
     overdraft = models.DecimalField(_(u'透支总额'), max_digits=20, decimal_places=2, default=Decimal(0))
-    updated = models.DateTimeField(_(u'更新时间'), default=timezone.localtime)
+    updated = models.DateTimeField(_(u'更新时间'), auto_now_add=True)
 
 
 class ShippingAddress(models.Model):

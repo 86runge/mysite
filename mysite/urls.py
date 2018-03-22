@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^favicon.ico$', views.serve, {'path': 'common/images/favicon.ico'}),
     re_path('^(index/|)$', IndexView.as_view(), name='index'),
+    path('common/', include('common.urls'), name='common'),
     path('eshop/', include('eshop.urls'), name='eshop'),
+    path('backend/', include('backend.urls'), name='backend'),
 ]
