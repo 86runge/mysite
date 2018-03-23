@@ -27,7 +27,7 @@ FILE_CHARSET = 'utf-8'
 DEFAULT_CHARSET = 'utf-8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ['127.0.0.1']
@@ -66,7 +66,7 @@ AUTHENTICATION_BACKENDS = [
     'user.backends.MyModelBackend',
 ]
 
-LOGIN_URL = '/index/'
+LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 SESSION_COOKIE_AGE = 12 * 60 * 60
 

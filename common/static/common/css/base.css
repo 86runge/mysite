@@ -23,16 +23,18 @@ body {
 }
 
 /*a标签样式*/
-/* a {
-    color: var(--link-color);
+/*a {
+  color: var(--link-color);
 }
-a:hover,
-a:focus {
-    color: var(--hover-color);
-    text-decoration: none;
+
+a:focus,
+a:hover {
+  color: var(--hover-color);
+  text-decoration: none;
 }
+
 a:focus {
-    outline: none;
+  outline: none;
 } */
 
 /*ul,ol*/
@@ -79,7 +81,7 @@ ul, ol {
 /*垂直水平居中*/
 /*父级元素*/
 /*.parent {*/
-  /*position: relative;*/
+/*position: relative;*/
 /*}*/
 
 /*子级元素*/
@@ -112,6 +114,13 @@ textarea {
 /* 按钮样式 */
 .btn-s1 {
 
+}
+
+/*表格的样式*/
+/*表头底部用细线*/
+table thead th, table thead td {
+  border-bottom-width: 1px !important;
+  text-align: center;
 }
 
 /*表单验证--validation*/

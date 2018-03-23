@@ -1,80 +1,113 @@
-a {
-    color: var(--link-color);
-}
-a:hover,
-a:focus {
-    color: #0090ff;
-    text-decoration: none;
-}
-a:focus {
-    outline: none;
+/*页面最小宽度、固定页面*/
+#wrap {
+  min-width: 1320px;
+  padding-bottom: 50px;
 }
 
+/*页面底部固定*/
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#content_box {
+  padding: 25px;
+}
+
+/*a标签样式*/
+a {
+  color: var(--link-color);
+}
+
+a:focus {
+  color: var(--link-color);
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0090ff;
+  text-decoration: none;
+}
 
 #header {
-    box-shadow: 0 2px 10px #888888;
-    background: var(--main-bg);
+  box-shadow: 0 2px 10px #888888;
+  background: var(--main-bg);
 }
 
 #logo {
-    width: 180px;
+  width: 180px;
 }
 
 #logo img {
-    width: 40px;
+  width: 40px;
 }
 
+/*导航条样式设置*/
 #nav li {
-    height: 40px;
-    box-sizing: border-box;
+  height: 40px;
+  box-sizing: border-box;
 }
 
-#nav li:hover{
-    border-bottom: 2px solid #0090ff;
-}  
+#nav li.active a {
+  background: #0E66F0;
+}
+
+#nav a:focus {
+  background: #ffffff;
+}
+
+/*hover样式要放在focus的后面*/
+#nav a:hover {
+  color: #ffffff;
+  background: #0E66F0;
+}
 
 #nav li a {
-    display: block;
-    padding: 0 20px;
-    font-weight: bold;
+  display: block;
+  padding: 0 20px;
+  font-weight: bold;
+  border-radius: 0;
 }
 
 #nav_right li a {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 
 #sidebar:after {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 180px;
-    content: " ";
-    z-index: -999;
-    background: #0E8AF0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  content: " ";
+  z-index: -999;
+  background: #0E8AF0;
 }
 
 /* 菜单样式 */
 #menu {
-    width: 180px;
+  width: 180px;
 }
 
-#menu li:hover {
-    background: #0E66F0;
+#menu li:hover a, #menu li.active a {
+  background: #0E66F0;
 }
 
 #menu a {
-    display: block;
-    color: #ffffff;
+  display: block;
+  color: #ffffff;
 }
+
 #menu a:hover,
 #menu a:focus {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 #mainbox {
-    margin-left: 180px;
-    padding: 25px;
+  margin-left: 180px;
+  padding: 25px;
 }
 
 #page_content {
@@ -82,9 +115,9 @@ a:focus {
 }
 
 #operate .item-box {
-    padding: 20px;
+  padding: 20px;
 }
 
 #operate .con {
-    height: 100px;
+  height: 100px;
 }

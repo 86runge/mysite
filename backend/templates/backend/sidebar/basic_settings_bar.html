@@ -1,0 +1,8 @@
+{% load extras %}
+<div id="sidebar" class="pull-left">
+  <div id="menu" class="mt20">
+    <ul class="lh40 tc">
+      <li class="{% if PAGE_MARK.2 == 'basic_settings' %}active{% endif %}"><a href="{% url 'backend:basic_settings' %}" title="">基本设置</a></li>
+    </ul>
+  </div>
+</div>

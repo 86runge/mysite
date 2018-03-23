@@ -15,6 +15,7 @@ from user.models import User
 logger = logging.getLogger('wxp.%s' % __name__)
 
 
+# @method_decorator(login_required, name='dispatch')
 class IndexView(TemplateView):
     """
     首页
@@ -49,7 +50,7 @@ class LoginView(TemplateView):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('eshop:index')
+                return JsonResponse({'status': True})
             else:
                 return render(request, self.template_name, {
                     'show_error': True
@@ -69,7 +70,6 @@ class LogoutView(TemplateView):
         return redirect('eshop:index')
 
 
-# @method_decorator(login_required, name='dispatch')
 class RegisterView(TemplateView):
     """
     注册页面

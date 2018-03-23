@@ -1,0 +1,8 @@
+{% load extras %}
+<div id="sidebar" class="pull-left">
+  <div id="menu" class="mt20">
+    <ul class="lh40 tc">
+      <li class="{% if PAGE_MARK.2 == 'order_list' %}active{% endif %}"><a href="{% url 'backend:order_list' %}" title="">订单列表</a></li>
+    </ul>
+  </div>
+</div>

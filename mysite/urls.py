@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-from eshop.views import IndexView
+from eshop.views import IndexView, LoginView
 from django.contrib.staticfiles import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^favicon.ico$', views.serve, {'path': 'common/images/favicon.ico'}),
     re_path('^(index/|)$', IndexView.as_view(), name='index'),
+    re_path('^(login/|)$', LoginView.as_view(), name='login'),
     path('common/', include('common.urls'), name='common'),
     path('eshop/', include('eshop.urls'), name='eshop'),
     path('backend/', include('backend.urls'), name='backend'),

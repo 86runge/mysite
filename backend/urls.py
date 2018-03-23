@@ -14,10 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import path
+
+from backend.views import IndexView, BasicSettingsView, UserManageView, RoleManageView, MessageManageView, GoodsListView, EnterpriseListView, OrderListView, EshopDecorationView
 
 app_name = "backend"
 
 urlpatterns = [
-
+    path('index/', IndexView.as_view(), name='index'),
+    path('basic_settings/', BasicSettingsView.as_view(), name='basic_settings'),
+    path('user_manage/', UserManageView.as_view(), name='user_manage'),
+    path('role_manage/', RoleManageView.as_view(), name='role_manage'),
+    path('message_manage/', MessageManageView.as_view(), name='message_manage'),
+    path('goods_list/', GoodsListView.as_view(), name='goods_list'),
+    path('enterprise_list/', EnterpriseListView.as_view(), name='enterprise_list'),
+    path('order_list/', OrderListView.as_view(), name='order_list'),
+    path('eshop_decoration/', EshopDecorationView.as_view(), name='eshop_decoration'),
 ]
-
