@@ -57,6 +57,21 @@ class UserManageView(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
+class StaffManageView(TemplateView):
+    """
+    员工管理
+    """
+    template_name = 'backend/staff_manage.html'
+
+    def get(self, request, *args, **kwargs):
+        try:
+            return render(request, self.template_name, {})
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+
+@method_decorator(login_required, name='dispatch')
 class RoleManageView(TemplateView):
     """
     角色管理
@@ -74,7 +89,7 @@ class RoleManageView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class MessageManageView(TemplateView):
     """
-    角色管理
+    消息管理
     """
     template_name = 'backend/message_manage.html'
 

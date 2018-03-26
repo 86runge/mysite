@@ -8,6 +8,7 @@ define(['validation'], function () {
     $("#get_verify_code").on('click', function () {
       var code = $.get_code();
       alert(code);
+      console.log(code);
       $("#get_code").val(code);
       $("#id_verify_code").val('');
     });

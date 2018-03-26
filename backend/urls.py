@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import path
 
-from backend.views import IndexView, BasicSettingsView, UserManageView, RoleManageView, MessageManageView, GoodsListView, EnterpriseListView, OrderListView, EshopDecorationView
+from backend.views import IndexView, BasicSettingsView, UserManageView, StaffManageView, RoleManageView, MessageManageView, GoodsListView, EnterpriseListView, OrderListView, EshopDecorationView
 
 app_name = "backend"
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('index/', IndexView.as_view(), name='index'),
     path('basic_settings/', BasicSettingsView.as_view(), name='basic_settings'),
     path('user_manage/', UserManageView.as_view(), name='user_manage'),
+    path('staff_manage/', StaffManageView.as_view(), name='staff_manage'),
     path('role_manage/', RoleManageView.as_view(), name='role_manage'),
     path('message_manage/', MessageManageView.as_view(), name='message_manage'),
     path('goods_list/', GoodsListView.as_view(), name='goods_list'),

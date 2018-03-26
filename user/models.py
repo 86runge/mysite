@@ -262,4 +262,3 @@ class ShippingAddress(models.Model):
     receiver = models.CharField(_(u'收件人'), max_length=50)
     phone = models.CharField(_(u'收件人电话'), max_length=20)
     is_default = models.BooleanField(_(u'是否默认'), default=False)
-

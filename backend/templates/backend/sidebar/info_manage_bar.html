@@ -3,6 +3,7 @@
   <div id="menu" class="mt20">
     <ul class="lh40 tc">
       <li class="{% if PAGE_MARK.2 == 'user_manage' %}active{% endif %}"><a href="{% url 'backend:user_manage' %}" title="">用户管理</a></li>
+      <li class="{% if PAGE_MARK.2 == 'staff_manage' %}active{% endif %}"><a href="{% url 'backend:staff_manage' %}" title="">员工管理</a></li>
       <li class="{% if PAGE_MARK.2 == 'role_manage' %}active{% endif %}"><a href="{% url 'backend:role_manage' %}" title="">角色管理</a></li>
       <li class="{% if PAGE_MARK.2 == 'message_manage' %}active{% endif %}"><a href="{% url 'backend:message_manage' %}" title="">消息管理</a></li>
     </ul>

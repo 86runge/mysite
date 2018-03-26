@@ -4,17 +4,25 @@
 // require.config()就写在主模块（main.js）的头部。参数就是一个对象，
 // 这个对象的paths属性指定各个模块的加载路径。
 
-var common_url = "/static/common/";
 require.config({
+  map: {
+    '*': {
+      'css': '/static/common/plugins/require/css.min.js'
+    }
+  },
   paths: {
-    "jquery": common_url + "plugins/jquery/jquery.min",
-    "bootstrap": common_url + "plugins/bootstrap/js/bootstrap.min",
-    "validation": common_url + "plugins/jquery-validation/jquery.validate.min",
-    "common": common_url + "js/common"
+    "jquery": "/static/common/plugins/jquery/jquery.min",
+    "bootstrap": "/static/common/plugins/bootstrap/js/bootstrap.min",
+    "switch": "/static/common/plugins/bootstrap-switch/js/bootstrap-switch.min",
+    "validation": "/static/common/plugins/jquery-validation/jquery.validate.min",
+    "common": "/static/common/js/common"
   },
   shim: {
     "bootstrap": {
       deps: ['jquery']
+    },
+    "switch": {
+      deps: ['bootstrap', 'css!/static/common/plugins/bootstrap-switch/css/bootstrap-switch.min.css']
     },
     "validation": {
       deps: ['jquery']

@@ -50,7 +50,7 @@ class LoginView(TemplateView):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return JsonResponse({'status': True})
+                return redirect('eshop:index')
             else:
                 return render(request, self.template_name, {
                     'show_error': True
