@@ -20,7 +20,7 @@ class CustomerService(models.Model):
     """
     cs_phone = models.CharField(_(u'客服电话'), max_length=11)
     cs_qq = models.CharField(_(u'客服QQ'), max_length=15)
-    cs_weixin = models.CharField(_(u'客服微信'), max_length=20)
+    cs_weixin = models.CharField(_(u'客服微信二维码图片'), max_length=100)
     cs_note = models.TextField(_(u'备注'))
 
 

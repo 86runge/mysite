@@ -10,30 +10,31 @@
     <div id="customer_service_settings">
       <h3>客服添加</h3>
       <div id="customer_service_add">
-        <form action="" id="customer_service" method="post" class="form-horizontal">
+        <form action="/backend/basic_settings/" id="customer_service_form" method="post" class="form-horizontal">
           {% csrf_token %}
+          <input type="file" class="hidden" id="id_cs_weixin" name="cs_weixin">
           <div class="form-group">
-            <label for="id_username" class="col-md-3 control-label">客服电话：</label>
+            <label for="id_cs_phone" class="col-sm-3 control-label"><span class="red">* </span>客服电话：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_username" name="username" placeholder="请输入客服电话">
+              <input type="text" class="form-control middle" id="id_cs_phone" name="cs_phone" placeholder="请输入客服电话">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-3 control-label">客服QQ：</label>
+            <label for="id_cs_qq" class="col-sm-3 control-label"><span class="red">* </span>客服QQ：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_password" name="password" placeholder="请输入客服QQ">
+              <input type="text" class="form-control middle" id="id_cs_qq" name="cs_qq" placeholder="请输入客服QQ">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-3 control-label">客服微信：</label>
+            <label for="" class="col-sm-3 control-label">客服微信：</label>
             <div class="col-sm-9">
-              <button type="button" class="btn btn-info form-control middle">请上传微信二维码图片</button>
+              <button type="button" class="btn btn-info form-control middle" id="add_weixin_img" name="weixin_img">请上传微信二维码图片</button>
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword3" class="col-sm-3 control-label">备注：</label>
+            <label for="id_cs_note" class="col-sm-3 control-label">备注：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_password" name="password" placeholder="请输入备注信息">
+              <input type="text" class="form-control middle" id="id_cs_note" name="cs_note" placeholder="请输入备注信息">
             </div>
           </div>
           <div class="form-group">
@@ -60,7 +61,7 @@
           <tr>
             <td>15926625869</td>
             <td>15926625869</td>
-            <td>二维码图片</td>
+            <td><img src="{{ 'upload/20180327094249.jpg'|media_url }}" alt="图片未显示出来"></td>
             <td>客服1</td>
             <td>
               <div class="switch">
@@ -71,7 +72,7 @@
           <tr>
             <td>15926625869</td>
             <td>15926625869</td>
-            <td>15926625869</td>
+            <td><img src="{{ 'upload/20180327094249.jpg'|media_url }}" alt="图片未显示出来"></td>
             <td>客服1</td>
             <td>
               <div class="switch">

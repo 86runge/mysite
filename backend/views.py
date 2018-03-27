@@ -1,8 +1,9 @@
 # coding=UTF-8
 import datetime
 
+from backend.models import CustomerService
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
@@ -36,6 +37,47 @@ class BasicSettingsView(TemplateView):
     def get(self, request, *args, **kwargs):
         try:
             return render(request, self.template_name, {})
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'action' in request.POST:
+                action = request.POST.get('action')
+                if action == 'add_customer_service':
+                    result = self._add_customer_service(request)
+                else:
+                    result = {
+                        'status': 0,
+                        'msg': '请求action错误'
+                    }
+            else:
+                result = {
+                    'status': 0,
+                    'msg': '请求错误'
+                }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_customer_service(self, request):
+        try:
+            if request.POST.get('cs_weixin'):
+                img_path = request.POST.get('cs_weixin').split('\\')[-1]
+            cs = {
+                'cs_phone': request.POST.get('cs_phone'),
+                'cs_qq': request.POST.get('cs_qq'),
+                'cs_weixin': img_path,
+                'cs_note': request.POST.get('cs_note')
+            }
+            CustomerService.objects.create(**cs)
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404

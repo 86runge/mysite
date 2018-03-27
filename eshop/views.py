@@ -50,11 +50,16 @@ class LoginView(TemplateView):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('eshop:index')
+                result = {
+                    'status': 0,
+                    'msg': '登陆成功'
+                }
             else:
-                return render(request, self.template_name, {
-                    'show_error': True
-                })
+                result = {
+                    'status': 1,
+                    'msg': '用户名或密码不正确'
+                }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404
