@@ -10,9 +10,9 @@
     <div id="customer_service_settings">
       <h3>客服添加</h3>
       <div id="customer_service_add">
-        <form action="/backend/basic_settings/" id="customer_service_form" method="post" class="form-horizontal">
+        <form action="" id="customer_service_form" enctype="multipart/form-data" class="form-horizontal">
           {% csrf_token %}
-          <input type="file" class="hidden" id="id_cs_weixin" name="cs_weixin">
+          <input runat='server' type="file" class="hidden" id="id_cs_weixin" name="cs_weixin_img">
           <div class="form-group">
             <label for="id_cs_phone" class="col-sm-3 control-label"><span class="red">* </span>客服电话：</label>
             <div class="col-sm-9">
@@ -47,39 +47,34 @@
       </div>
       <div id="customer_service_table">
         <h3>已经添加的客服</h3>
+        <span class="red">* 只能开启一个客服哟</span>
         <table class="table table-bordered table-hover tc mt10 customer_service_table">
           <thead>
           <tr>
             <th>客服电话</th>
             <th>客服QQ</th>
             <th>客服微信</th>
+            <th>添加时间</th>
             <th>备注</th>
             <th>操作</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>15926625869</td>
-            <td>15926625869</td>
-            <td><img src="{{ 'upload/20180327094249.jpg'|media_url }}" alt="图片未显示出来"></td>
-            <td>客服1</td>
-            <td>
-              <div class="switch">
-                <input type="checkbox" class="customer-service-switch" checked/>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>15926625869</td>
-            <td>15926625869</td>
-            <td><img src="{{ 'upload/20180327094249.jpg'|media_url }}" alt="图片未显示出来"></td>
-            <td>客服1</td>
-            <td>
-              <div class="switch">
-                <input type="checkbox" class="customer-service-switch" checked/>
-              </div>
-            </td>
-          </tr>
+          {% for data in obj %}
+            <tr data-id="{{ data.id }}">
+              <td>{{ data.cs_phone }}</td>
+              <td>{{ data.cs_qq }}</td>
+              <td><a href="javascript:;"><img class="wei-img" src="/media/{{ data.cs_weixin }}" alt="图片未显示出来"></a></td>
+              <td>{{ data.cs_join_time }}</td>
+              <td>{{ data.cs_note }}</td>
+              <td>
+                <div class="switch switch-btn dib">
+                  <input type="checkbox" class="customer-service-switch" {% if data.is_active %}checked{% endif %}/>
+                </div>
+                <button class="btn btn-danger ml15 delete-customer-service">删除</button>
+              </td>
+            </tr>
+          {% endfor %}
           </tbody>
         </table>
       </div>

@@ -112,8 +112,14 @@ textarea {
 }
 
 /* 按钮样式 */
-.btn-s1 {
+/*按钮获取焦点时，去掉outline*/
+button:focus {
+  outline: none !important;
+}
 
+.btn-s1 {
+  color: #0090ff;
+  cursor: pointer;
 }
 
 /*表格的样式*/

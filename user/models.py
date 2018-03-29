@@ -9,7 +9,6 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import PermissionDenied
 from django.core.mail import send_mail
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from decimal import Decimal
@@ -146,14 +145,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     username_validator = UnicodeUsernameValidator()
 
-    username = models.CharField(_(u'用户名'), max_length=150, unique=True, help_text=_(u'必填, 由字母、数字和下划线组成，最长150个字符'),
-                                validators=[username_validator], error_messages={'unique': _(u"用户名已存在"), }, )
+    username = models.CharField(_(u'用户名'), max_length=150, unique=True, help_text=_(u'必填, 由字母、数字和下划线组成，最长150个字符'), validators=[username_validator], error_messages={'unique': _(u"用户名已存在")})
     nick = models.CharField(_(u'昵称'), max_length=150, blank=True)
     phone = models.CharField(_(u'电话'), max_length=20)
     email = models.EmailField(_(u'邮箱'), blank=True)
     verify_code = models.CharField(_(u'验证码'), max_length=4)  # 4位验证码
-    is_staff = models.BooleanField(_(u'内部职员'), default=False, help_text=_(u'只有内部职员可以登录系统管理后台'), )
-    is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'用户激活后方可登录'), )
+    is_staff = models.BooleanField(_(u'内部职员'), default=False, help_text=_(u'只有内部职员可以登录系统管理后台'))
+    is_active = models.BooleanField(_(u'是否激活'), default=True, help_text=_(u'用户激活后方可登录'))
     date_joined = models.DateTimeField(_(u'注册时间'), auto_now_add=True)
 
     objects = UserManager()

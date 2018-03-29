@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from eshop.views import IndexView, LoginView
 from django.contrib.staticfiles import views
+from mysite import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +29,11 @@ urlpatterns = [
     path('eshop/', include('eshop.urls'), name='eshop'),
     path('backend/', include('backend.urls'), name='backend'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    from django.contrib.staticfiles import views
+
+    urlpatterns += [
+        re_path(r'^favicon.ico$', views.serve, {'path': 'common/images/favicon.ico'}),
+    ]

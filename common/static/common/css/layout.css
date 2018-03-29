@@ -1,4 +1,7 @@
 /*layout CSS*/
+/*font-weight*/
+.normal{font-weight: normal;}
+.bold{font-weight: bold;}
 /* display */
 .dn{display: none;}
 .di{display: inline;}

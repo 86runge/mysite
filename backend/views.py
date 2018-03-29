@@ -2,12 +2,16 @@
 import datetime
 
 from backend.models import CustomerService
+from common.utils.utils_file import FileUploadUtil
+from common.views import FileOPView
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 import logging
+
+from user.models import User
 
 logger = logging.getLogger('wxp.%s' % __name__)
 
@@ -36,7 +40,10 @@ class BasicSettingsView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
-            return render(request, self.template_name, {})
+            obj = CustomerService.objects.all()
+            return render(request, self.template_name, {
+                'obj': obj
+            })
         except Exception as e:
             logger.exception(e)
             raise Http404
@@ -46,7 +53,15 @@ class BasicSettingsView(TemplateView):
             if 'action' in request.POST:
                 action = request.POST.get('action')
                 if action == 'add_customer_service':
-                    result = self._add_customer_service(request)
+                    return self._add_customer_service(request)
+                if action == 'get_customer_service':
+                    return self._get_customer_service(request)
+                if action == 'update_customer_service':
+                    return self._update_customer_service(request)
+                if action == 'delete_customer_service':
+                    return self._delete_customer_service(request)
+                if action == 'switch_customer_service':
+                    return self._switch_customer_service(request)
                 else:
                     result = {
                         'status': 0,
@@ -64,18 +79,58 @@ class BasicSettingsView(TemplateView):
 
     def _add_customer_service(self, request):
         try:
-            if request.POST.get('cs_weixin'):
-                img_path = request.POST.get('cs_weixin').split('\\')[-1]
+            img_path = ''
+            file_obj = request.FILES.get("cs_weixin_img")
+            file_upload = FileUploadUtil(file_obj, "upload/", 100 * 1024 * 1024)
+            flag = file_upload.upload_file(is_new_folder=True)
+            if flag:
+                # ret = {'status': 200, 'msg': '上传成功', 'file_info': file_upload.file_path}
+                img_path = file_upload.file_path
+            else:
+                pass
+                # ret = {'status': 500, 'msg': '上传失败', 'file_info': file_upload.file_path}
             cs = {
                 'cs_phone': request.POST.get('cs_phone'),
                 'cs_qq': request.POST.get('cs_qq'),
                 'cs_weixin': img_path,
+                'cs_join_time': datetime.datetime.now(),
                 'cs_note': request.POST.get('cs_note')
             }
             CustomerService.objects.create(**cs)
             result = {
                 'status': 0,
-                'msg': '添加成功'
+                'msg': '添加成功',
+                'upload_msg': '图片上传成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_customer_service(self, request):
+        try:
+            id = request.POST.get('id')
+            CustomerService.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功',
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _switch_customer_service(self, request):
+        try:
+            id = request.POST.get('id')
+            cs = CustomerService.objects.filter(id=id)
+            if cs.first().is_active:
+                cs.update(is_active=False)
+            else:
+                cs.update(is_active=True)
+            result = {
+                'status': 0,
+                'msg': '操作成功',
             }
             return JsonResponse(result)
         except Exception as e:
@@ -92,10 +147,16 @@ class UserManageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
-            return render(request, self.template_name, {})
+            obj = User.objects.all()
+            return render(request, self.template_name, {
+                'obj': obj
+            })
         except Exception as e:
             logger.exception(e)
             raise Http404
+
+    def post(self, request, *args, **kwargs):
+        pass
 
 
 @method_decorator(login_required, name='dispatch')

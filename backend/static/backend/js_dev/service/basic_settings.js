@@ -21,6 +21,28 @@ define(['switch'], function () {
       onInit: function onInit() {
       },
       onSwitchChange: function onSwitchChange() {
+        // 开启关闭客服
+        var this_id = $(this).parents('tr').attr('data-id');
+        $.ajax({
+          url: '/backend/basic_settings/',
+          type: 'post',
+          data: {
+            'id': this_id,
+            'action': 'switch_customer_service',
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+          },
+          headers: {
+            Accept: "application/json, text/html/, application/xhtml+xml; charset=utf-8"
+          },
+          success: function (data) {
+            console.log("修改成功");
+            console.log(data);
+          },
+          error: function (data) {
+            console.log("发生错误");
+            console.log(data);
+          }
+        })
       }
     };
     $(".customer-service-switch").bootstrapSwitch();
@@ -48,32 +70,53 @@ define(['switch'], function () {
         }
       },
       submitHandler: function () {
+        var form_data = new FormData($("#customer_service_form")[0]);
+        form_data.append('cs_weixin', $("#id_cs_weixin").val());
+        form_data.append('action', 'add_customer_service');
         $.ajax({
           url: '/backend/basic_settings/',
           type: 'post',
           dataType: 'json',
-          data: {
-            cs_phone: $("#id_cs_phone").val(),
-            cs_qq: $("#id_cs_qq").val(),
-            cs_weixin: $("#id_cs_weixin").val(),
-            cs_note: $("#id_cs_note").val(),
-            action: 'add_customer_service',
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-          },
-          headers: {
-            Accept: "application/json, text/html/, application/xhtml+xml; charset=utf-8"
-          },
+          data: form_data,
+          processData: false,  //必须false才会避开jQuery对 formdata 的默认处理
+          contentType: false,  //必须false才会自动加上正确的Content-Type
           success: function () {
             console.log("添加成功");
-            // alert("登录成功");
           },
           error: function (error) {
             console.log(error);
-            // alert("发生错误");
+
           }
         })
       }
-    })
+    });
+
+    // 删除客服信息
+    $(".delete-customer-service").on('click', function () {
+      var this_id = $(this).parents('tr').attr('data-id');
+      $.ajax({
+        url: '/backend/basic_settings/',
+        type: 'post',
+        data: {
+          'id': this_id,
+          'action': 'delete_customer_service',
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        headers: {
+          Accept: "application/json, text/html/, application/xhtml+xml; charset=utf-8"
+        },
+        success: function (data) {
+          console.log("删除成功");
+          console.log(data);
+        },
+        error: function (data) {
+          console.log("发生错误");
+          console.log(data);
+        }
+      })
+    });
+
+
   };
   return {
     init: fn
