@@ -7,7 +7,6 @@
   {% include 'backend/sidebar/info_manage_bar.html' %}
   <div id="mainbox">
     <h1>用户管理</h1>
-    <button class="btn btn-primary" id="add_user">添加用户</button>
     <table class="table table-bordered table-hover tc">
       <caption>派生科技2月份进账统计</caption>
       <thead>
@@ -25,7 +24,7 @@
       </thead>
       <tbody>
       {% for data in obj %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.nick }}</td>
           <td>{{ data.username }}</td>
           <td>{{ data.phone }}</td>
@@ -41,8 +40,8 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="javascript:;">修改</a></li>
-                <li><a href="javascript:;">删除</a></li>
+                <li><a href="javascript:;" class="J_update_user">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_user">删除</a></li>
               </ul>
             </div>
           </td>
@@ -55,6 +54,6 @@
 {% endblock %}
 
 {% block modal %}
-  {% include 'backend/modal/user_manage_modal.html' %}
+  {% include 'backend/modal/staff_manage_modal.html' %}
 {% endblock %}
 {% block js %}{% endblock %}

@@ -7,99 +7,55 @@
   {% include 'backend/sidebar/info_manage_bar.html' %}
   <div id="mainbox">
     <h1>员工管理</h1>
+    <button class="btn btn-primary" id="add_staff">添加员工</button>
     <table class="table table-bordered table-hover tc">
       <caption>派生科技2月份进账统计</caption>
       <thead>
       <tr>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
+        <th>姓名</th>
+        <th>用户名</th>
+        <th>电话</th>
+        <th>部门</th>
+        <th>角色</th>
+        <th>直属上级</th>
+        <th>电子邮箱</th>
+        <th>是否激活</th>
+        <th>添加时间</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="warning">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="danger">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
+      {% for data in obj %}
+        <tr data-id="{{ data.id }}">
+          <td>{{ data.user.nick }}</td>
+          <td>{{ data.user.username }}</td>
+          <td>{{ data.user.phone }}</td>
+          <td>{{ data.department }}</td>
+          <td>{{ data.role }}</td>
+          <td>{{ data.superior }}</td>
+          <td>{{ data.user.email }}</td>
+          <td>{% if data.is_active %}是{% else %}否{% endif %}</td>
+          <td>{{ data.user.date_joined }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_staff">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_staff">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
 {% endblock %}
 
-{% block modal %}{% endblock %}
+{% block modal %}
+  {% include 'backend/modal/staff_manage_modal.html' %}
+{% endblock %}
 {% block js %}{% endblock %}

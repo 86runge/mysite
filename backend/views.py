@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 import logging
 
-from user.models import User
+from user.models import User, Staff
 
 logger = logging.getLogger('wxp.%s' % __name__)
 
@@ -54,10 +54,10 @@ class BasicSettingsView(TemplateView):
                 action = request.POST.get('action')
                 if action == 'add_customer_service':
                     return self._add_customer_service(request)
-                if action == 'get_customer_service':
-                    return self._get_customer_service(request)
-                if action == 'update_customer_service':
-                    return self._update_customer_service(request)
+                # if action == 'get_customer_service':
+                #     return self._get_customer_service(request)
+                # if action == 'update_customer_service':
+                #     return self._update_customer_service(request)
                 if action == 'delete_customer_service':
                     return self._delete_customer_service(request)
                 if action == 'switch_customer_service':
@@ -156,7 +156,54 @@ class UserManageView(TemplateView):
             raise Http404
 
     def post(self, request, *args, **kwargs):
-        pass
+        try:
+            if 'action' in request.POST:
+                action = request.POST.get('action')
+                if action == 'add_user':
+                    return self._add_user(request)
+                # if action == 'get_customer_service':
+                #     return self._get_customer_service(request)
+                # if action == 'update_customer_service':
+                #     return self._update_customer_service(request)
+                # if action == 'delete_customer_service':
+                #     return self._delete_customer_service(request)
+                # if action == 'switch_customer_service':
+                #     return self._switch_customer_service(request)
+                else:
+                    result = {
+                        'status': 0,
+                        'msg': '请求action错误'
+                    }
+            else:
+                result = {
+                    'status': 0,
+                    'msg': '请求错误'
+                }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_user(self, request):
+        try:
+            user = {
+                'username': request.POST.get('username'),
+                'password': request.POST.get('password'),
+                'nick': request.POST.get('nick'),
+                'phone': request.POST.get('phone'),
+                'email': request.POST.get('email'),
+                'is_active': request.POST.get('is_active'),
+                'date_joined': datetime.datetime.now()
+            }
+            User.objects.create_user(**user)
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
 
 
 @method_decorator(login_required, name='dispatch')
@@ -168,7 +215,98 @@ class StaffManageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
-            return render(request, self.template_name, {})
+            obj = Staff.objects.all()
+            return render(request, self.template_name, {
+                'obj': obj
+            })
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'action' in request.POST:
+                action = request.POST.get('action')
+                if action == 'add_staff':
+                    return self._add_staff(request)
+                if action == 'get_staff':
+                    return self._get_staff(request)
+                if action == 'update_staff':
+                    return self._update_staff(request)
+                if action == 'delete_staff':
+                    return self._delete_staff(request)
+                else:
+                    result = {
+                        'status': 0,
+                        'msg': '请求action错误'
+                    }
+            else:
+                result = {
+                    'status': 0,
+                    'msg': '请求错误'
+                }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_staff(self, request):
+        try:
+            user = {
+                'username': request.POST.get('username'),
+                'password': request.POST.get('password'),
+                'nick': request.POST.get('nick'),
+                'phone': request.POST.get('phone'),
+                'email': request.POST.get('email'),
+                'is_active': request.POST.get('is_active'),
+                'date_joined': datetime.datetime.now()
+            }
+            staff = {
+                'department': request.POST.get('department'),
+                'role': request.POST.get('role'),
+                'superior': request.POST.get('superior')
+            }
+            _user = User.objects.create_user(**user)
+            staff['user'] = _user
+            Staff.objects.create(**staff)
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _get_staff(self, request):
+        try:
+            id = request.POST.get('id')
+            staff = Staff.objects.filter(id=id)
+            return render(request, self.template_name, {
+                'staff': staff
+            })
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_staff(self, request):
+        try:
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_staff(self, request):
+        try:
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404
