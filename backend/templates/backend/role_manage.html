@@ -6,100 +6,156 @@
 {% block content %}
   {% include 'backend/sidebar/info_manage_bar.html' %}
   <div id="mainbox">
-    <h1>角色管理</h1>
+    <h3>权限管理</h3>
+    <button class="btn btn-primary" id="add_permission">添加权限</button>
     <table class="table table-bordered table-hover tc">
-      <caption>派生科技2月份进账统计</caption>
+      <caption>权限列表</caption>
       <thead>
       <tr>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
+        <th>权限名称</th>
+        <th>归属模型</th>
+        <th>权限码</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
+      {% for data in permission %}
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.content_type }}</td>
+          <td>{{ data.codename }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_permission">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_permission">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <h3>用户群管理</h3>
+    <button class="btn btn-primary" id="add_group">添加用户群</button>
+    <table class="table table-bordered table-hover tc">
+      <caption>用户群列表</caption>
+      <thead>
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th>群名称</th>
+        <th>群权限</th>
+        <th>创建时间</th>
+        <th>备注</th>
+        <th>是否激活</th>
+        <th>操作</th>
       </tr>
-      <tr class="warning">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
+      </thead>
+      <tbody>
+      {% for data in group %}
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.permissions }}</td>
+          <td>{{ data.created }}</td>
+          <td>{{ data.notes }}</td>
+          <td>{% if data.is_active %}是{% else %}否{% endif %}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_group">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_group">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <h3>角色管理</h3>
+    <button class="btn btn-primary" id="add_role">添加角色</button>
+    <table class="table table-bordered table-hover tc">
+      <caption>角色列表</caption>
+      <thead>
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th>角色名</th>
+        <th>用户群</th>
+        <th>创建时间</th>
+        <th>备注</th>
+        <th>是否激活</th>
+        <th>操作</th>
       </tr>
+      </thead>
+      <tbody>
+      {% for data in role %}
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.groups }}</td>
+          <td>{{ data.created }}</td>
+          <td>{{ data.notes }}</td>
+          <td>{{ data.is_active }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_role">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_role">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <h3>部门管理</h3>
+    <button class="btn btn-primary" id="add_department">添加部门</button>
+    <table class="table table-bordered table-hover tc">
+      <caption>部门列表</caption>
+      <thead>
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th>部门名</th>
+        <th>创建时间</th>
+        <th>备注</th>
+        <th>是否激活</th>
+        <th>操作</th>
       </tr>
-      <tr class="danger">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
+      </thead>
+      <tbody>
+      {% for data in department %}
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.created }}</td>
+          <td>{{ data.notes }}</td>
+          <td>{{ data.is_active }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_department">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_department">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
 {% endblock %}
 
-{% block modal %}{% endblock %}
+{% block modal %}
+  {% include 'backend/modal/permission_manage_modal.html' %}
+{% endblock %}
 {% block js %}{% endblock %}

@@ -7,6 +7,7 @@
       </div>
       <div class="modal-body">
         <form action="" id="form_staff_manage" method="post" class="form-horizontal">
+          <input type="hidden" id="update_id">
           <div class="form-group">
             <label for="id_nick" class="col-sm-3 control-label">员工姓名：</label>
             <div class="col-sm-9">
@@ -58,15 +59,16 @@
           <div class="form-group">
             <label for="id_email" class="col-sm-3 control-label">是否激活：</label>
             <div class="col-sm-9">
-              <label for="yes" class="normal"><input type="radio" name="is_active" id="yes" value="1" checked>开启</label>
-              <label for="no" class="normal"><input type="radio" name="is_active" id="no" value="0">关闭</label>
+              <label for="yes" class="normal"><input type="radio" name="is_active" id="is_active_yes" value="1" checked>开启</label>
+              <label for="no" class="normal"><input type="radio" name="is_active" id="is_active_no" value="0">关闭</label>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="submit_staff_manage">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_add_staff">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_update_staff">提交</button>
       </div>
     </div>
   </div>

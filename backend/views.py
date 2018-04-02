@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 import logging
 
-from user.models import User, Staff
+from user.models import User, Staff, Department, Role, Group, Permission
 
 logger = logging.getLogger('wxp.%s' % __name__)
 
@@ -282,15 +282,43 @@ class StaffManageView(TemplateView):
         try:
             id = request.POST.get('id')
             staff = Staff.objects.filter(id=id)
-            return render(request, self.template_name, {
-                'staff': staff
-            })
+            user = User.objects.filter(id=staff[0].user_id)
+            staff_list = {
+                'username': user[0].username,
+                'password': user[0].password,
+                'nick': user[0].nick,
+                'phone': user[0].phone,
+                'email': user[0].email,
+                'is_active': user[0].is_active,
+                'department': staff[0].department,
+                'role': staff[0].role,
+                'superior': staff[0].superior,
+            }
+            return JsonResponse(staff_list)
         except Exception as e:
             logger.exception(e)
             raise Http404
 
     def _update_staff(self, request):
         try:
+            user = {
+                'username': request.POST.get('username'),
+                'password': request.POST.get('password'),
+                'nick': request.POST.get('nick'),
+                'phone': request.POST.get('phone'),
+                'email': request.POST.get('email'),
+                'is_active': request.POST.get('is_active'),
+                'date_joined': datetime.datetime.now()
+            }
+            staff = {
+                'department': request.POST.get('department'),
+                'role': request.POST.get('role'),
+                'superior': request.POST.get('superior')
+            }
+            staff_id = request.POST.get('staff_id')
+            user_id = Staff.objects.filter(id=staff_id)[0].user_id
+            Staff.objects.filter(id=staff_id).update(**staff)
+            User.objects.filter(id=user_id).update(**user)
             result = {
                 'status': 0,
                 'msg': '修改成功'
@@ -321,7 +349,93 @@ class RoleManageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
-            return render(request, self.template_name, {})
+            permission = Permission.objects.all()
+            group = Group.objects.all()
+            role = Role.objects.all()
+            department = Department.objects.all()
+            return render(request, self.template_name, {
+                'permission': permission,
+                'group': group,
+                'role': role,
+                'department': department,
+            })
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'action' in request.POST:
+                action = request.POST.get('action')
+                if action == 'add_permission':
+                    return self._add_permission(request)
+                if action == 'add_group':
+                    return self._add_group(request)
+                if action == 'add_role':
+                    return self._add_role(request)
+                if action == 'add_department':
+                    return self._add_department(request)
+                else:
+                    result = {
+                        'status': 0,
+                        'msg': '请求action错误'
+                    }
+            else:
+                result = {
+                    'status': 0,
+                    'msg': '请求错误'
+                }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_permission(self, request):
+        try:
+            permission = {
+                'name': request.POST.get('name'),
+                'content_type': request.POST.get('content_type'),
+                'codename': request.POST.get('codename'),
+            }
+            Permission.objects.create(**permission)
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_group(self, request):
+        try:
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_role(self, request):
+        try:
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_department(self, request):
+        try:
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404

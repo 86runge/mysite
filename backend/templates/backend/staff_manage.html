@@ -34,7 +34,7 @@
           <td>{{ data.role }}</td>
           <td>{{ data.superior }}</td>
           <td>{{ data.user.email }}</td>
-          <td>{% if data.is_active %}是{% else %}否{% endif %}</td>
+          <td>{% if data.user.is_active %}是{% else %}否{% endif %}</td>
           <td>{{ data.user.date_joined }}</td>
           <td>
             <div class="btn-group">
