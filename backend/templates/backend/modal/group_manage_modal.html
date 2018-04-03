@@ -1,0 +1,50 @@
+<div class="modal fade" id="group_manage_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">标题</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_group_manage" method="post" class="form-horizontal">
+          <input type="hidden" id="update_id">
+          <div class="form-group">
+            <label for="id_g_name" class="col-sm-3 control-label">群名称：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_g_name" name="name" placeholder="请输入群名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_permissions" class="col-sm-3 control-label">群权限：</label>
+            <div class="col-sm-9">
+              <select class="form-control middle" name="permissions" id="id_permissions">
+                <option value="">--请选择--</option>
+                {% for p in permission %}
+                  <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">是否激活：</label>
+            <div class="col-sm-9">
+              <label for="yes" class="normal"><input type="radio" name="is_active" id="g_active_yes" value="1" checked>开启</label>
+              <label for="no" class="normal"><input type="radio" name="is_active" id="g_active_no" value="0">关闭</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_g_notes" class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_g_notes" name="notes" placeholder="请输入备注">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="submit_add_group">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_update_group">提交</button>
+      </div>
+    </div>
+  </div>
+</div>

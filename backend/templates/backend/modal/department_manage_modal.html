@@ -1,0 +1,39 @@
+<div class="modal fade" id="department_manage_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">标题</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_department_manage" method="post" class="form-horizontal">
+          <input type="hidden" id="update_id">
+          <div class="form-group">
+            <label for="id_d_name" class="col-sm-3 control-label">部门名称：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_d_name" name="name" placeholder="请输入群名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">是否激活：</label>
+            <div class="col-sm-9">
+              <label for="yes" class="normal"><input type="radio" name="is_active" id="d_active_yes" value="1" checked>开启</label>
+              <label for="no" class="normal"><input type="radio" name="is_active" id="d_active_no" value="0">关闭</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_d_notes" class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_d_notes" name="notes" placeholder="请输入备注">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="submit_add_department">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_update_department">提交</button>
+      </div>
+    </div>
+  </div>
+</div>

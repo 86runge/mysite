@@ -20,7 +20,7 @@
       </thead>
       <tbody>
       {% for data in permission %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.name }}</td>
           <td>{{ data.content_type }}</td>
           <td>{{ data.codename }}</td>
@@ -56,7 +56,7 @@
       </thead>
       <tbody>
       {% for data in group %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.name }}</td>
           <td>{{ data.permissions }}</td>
           <td>{{ data.created }}</td>
@@ -94,12 +94,12 @@
       </thead>
       <tbody>
       {% for data in role %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.name }}</td>
           <td>{{ data.groups }}</td>
           <td>{{ data.created }}</td>
           <td>{{ data.notes }}</td>
-          <td>{{ data.is_active }}</td>
+          <td>{% if data.is_active %}是{% else %}否{% endif %}</td>
           <td>
             <div class="btn-group">
               <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
@@ -131,11 +131,11 @@
       </thead>
       <tbody>
       {% for data in department %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.name }}</td>
           <td>{{ data.created }}</td>
           <td>{{ data.notes }}</td>
-          <td>{{ data.is_active }}</td>
+          <td>{% if data.is_active %}是{% else %}否{% endif %}</td>
           <td>
             <div class="btn-group">
               <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
@@ -157,5 +157,8 @@
 
 {% block modal %}
   {% include 'backend/modal/permission_manage_modal.html' %}
+  {% include 'backend/modal/group_manage_modal.html' %}
+  {% include 'backend/modal/role_manage_modal.html' %}
+  {% include 'backend/modal/department_manage_modal.html' %}
 {% endblock %}
 {% block js %}{% endblock %}

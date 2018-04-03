@@ -1,16 +1,16 @@
 # coding=UTF-8
 import datetime
+import logging
 
 from backend.models import CustomerService
 from common.utils.utils_file import FileUploadUtil
-from common.views import FileOPView
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
+from django.db.models import ProtectedError
 from django.http import Http404, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
-import logging
-
 from user.models import User, Staff, Department, Role, Group, Permission
 
 logger = logging.getLogger('wxp.%s' % __name__)
@@ -281,20 +281,20 @@ class StaffManageView(TemplateView):
     def _get_staff(self, request):
         try:
             id = request.POST.get('id')
-            staff = Staff.objects.filter(id=id)
-            user = User.objects.filter(id=staff[0].user_id)
-            staff_list = {
-                'username': user[0].username,
-                'password': user[0].password,
-                'nick': user[0].nick,
-                'phone': user[0].phone,
-                'email': user[0].email,
-                'is_active': user[0].is_active,
-                'department': staff[0].department,
-                'role': staff[0].role,
-                'superior': staff[0].superior,
+            staff = Staff.objects.filter(id=id)[0]
+            user = User.objects.filter(id=staff.user_id)[0]
+            staff_result = {
+                'username': user.username,
+                'password': user.password,
+                'nick': user.nick,
+                'phone': user.phone,
+                'email': user.email,
+                'is_active': user.is_active,
+                'department': staff.department,
+                'role': staff.role,
+                'superior': staff.superior,
             }
-            return JsonResponse(staff_list)
+            return JsonResponse(staff_result)
         except Exception as e:
             logger.exception(e)
             raise Http404
@@ -315,7 +315,7 @@ class StaffManageView(TemplateView):
                 'role': request.POST.get('role'),
                 'superior': request.POST.get('superior')
             }
-            staff_id = request.POST.get('staff_id')
+            staff_id = request.POST.get('id')
             user_id = Staff.objects.filter(id=staff_id)[0].user_id
             Staff.objects.filter(id=staff_id).update(**staff)
             User.objects.filter(id=user_id).update(**user)
@@ -349,11 +349,13 @@ class RoleManageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
+            content_type = ContentType.objects.all()
             permission = Permission.objects.all()
             group = Group.objects.all()
             role = Role.objects.all()
             department = Department.objects.all()
             return render(request, self.template_name, {
+                'content_type': content_type,
                 'permission': permission,
                 'group': group,
                 'role': role,
@@ -367,14 +369,42 @@ class RoleManageView(TemplateView):
         try:
             if 'action' in request.POST:
                 action = request.POST.get('action')
+                # 权限操作
                 if action == 'add_permission':
                     return self._add_permission(request)
+                if action == 'get_permission':
+                    return self._get_permission(request)
+                if action == 'update_permission':
+                    return self._update_permission(request)
+                if action == 'delete_permission':
+                    return self._delete_permission(request)
+                # 群组操作
                 if action == 'add_group':
                     return self._add_group(request)
+                if action == 'get_group':
+                    return self._get_group(request)
+                if action == 'update_group':
+                    return self._update_group(request)
+                if action == 'delete_group':
+                    return self._delete_group(request)
+                # 角色操作
                 if action == 'add_role':
                     return self._add_role(request)
+                if action == 'get_role':
+                    return self._get_role(request)
+                if action == 'update_role':
+                    return self._update_role(request)
+                if action == 'delete_role':
+                    return self._delete_role(request)
+                # 部门操作
                 if action == 'add_department':
                     return self._add_department(request)
+                if action == 'get_department':
+                    return self._get_department(request)
+                if action == 'update_department':
+                    return self._update_department(request)
+                if action == 'delete_department':
+                    return self._delete_department(request)
                 else:
                     result = {
                         'status': 0,
@@ -394,7 +424,7 @@ class RoleManageView(TemplateView):
         try:
             permission = {
                 'name': request.POST.get('name'),
-                'content_type': request.POST.get('content_type'),
+                'content_type_id': request.POST.get('content_type'),
                 'codename': request.POST.get('codename'),
             }
             Permission.objects.create(**permission)
@@ -407,11 +437,123 @@ class RoleManageView(TemplateView):
             logger.exception(e)
             raise Http404
 
+    def _get_permission(self, request):
+        try:
+            id = request.POST.get('id')
+            permission = Permission.objects.filter(id=id)[0]
+            content_type = ContentType.objects.filter(id=permission.content_type_id)[0]
+            permission_result = {
+                'name': permission.name,
+                'content_type': content_type.id,
+                'codename': permission.codename,
+            }
+            return JsonResponse(permission_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_permission(self, request):
+        try:
+            id = request.POST.get('id')
+            permission = {
+                'name': request.POST.get('name'),
+                'content_type_id': request.POST.get('content_type'),
+                'codename': request.POST.get('codename'),
+            }
+            Permission.objects.filter(id=id).update(**permission)
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_permission(self, request):
+        try:
+            id = request.POST.get('id')
+            Permission.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该权限正在被使用，无法删除'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
     def _add_group(self, request):
         try:
+            group = {
+                'name': request.POST.get('name'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Group.objects.create(**group)
             result = {
                 'status': 0,
                 'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _get_group(self, request):
+        try:
+            id = request.POST.get('id')
+            group = Group.objects.filter(id=id)[0]
+            group_result = {
+                'name': group.name,
+                # 'permissions': group.permissions,
+                'is_active': group.is_active,
+                'notes': group.notes,
+            }
+            return JsonResponse(group_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_group(self, request):
+        try:
+            id = request.POST.get('id')
+            group = {
+                'name': request.POST.get('name'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Group.objects.filter(id=id).update(**group)
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_group(self, request):
+        try:
+            id = request.POST.get('id')
+            Group.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该群组正在被使用，无法删除'
             }
             return JsonResponse(result)
         except Exception as e:
@@ -420,6 +562,14 @@ class RoleManageView(TemplateView):
 
     def _add_role(self, request):
         try:
+            role = {
+                'name': request.POST.get('name'),
+                # 'groups': request.POST.get('groups'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Role.objects.create(**role)
             result = {
                 'status': 0,
                 'msg': '添加成功'
@@ -429,11 +579,111 @@ class RoleManageView(TemplateView):
             logger.exception(e)
             raise Http404
 
+    def _get_role(self, request):
+        try:
+            id = request.POST.get('id')
+            role = Role.objects.filter(id=id)[0]
+            role_result = {
+                'name': role.name,
+                # 'groups': role.groups,
+                'is_active': role.is_active,
+                'notes': role.notes,
+            }
+            return JsonResponse(role_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_role(self, request):
+        try:
+            id = request.POST.get('id')
+            role = {
+                'name': request.POST.get('name'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Role.objects.filter(id=id).update(**role)
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_role(self, request):
+        try:
+            id = request.POST.get('id')
+            Role.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
     def _add_department(self, request):
         try:
+            department = {
+                'name': request.POST.get('name'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Department.objects.create(**department)
             result = {
                 'status': 0,
                 'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _get_department(self, request):
+        try:
+            id = request.POST.get('id')
+            department = Department.objects.filter(id=id)[0]
+            department_result = {
+                'name': department.name,
+                'is_active': department.is_active,
+                'notes': department.notes,
+            }
+            return JsonResponse(department_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_department(self, request):
+        try:
+            id = request.POST.get('id')
+            department = {
+                'name': request.POST.get('name'),
+                'created': datetime.datetime.now(),
+                'is_active': request.POST.get('is_active'),
+                'notes': request.POST.get('notes')
+            }
+            Department.objects.filter(id=id).update(**department)
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_department(self, request):
+        try:
+            id = request.POST.get('id')
+            Department.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
             }
             return JsonResponse(result)
         except Exception as e:

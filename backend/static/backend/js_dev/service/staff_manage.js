@@ -101,7 +101,7 @@ define([], function () {
         submitHandler: function () {
           var form_data = new FormData($("#form_staff_manage")[0]);
           form_data.append('action', action);
-          form_data.append('staff_id', id);
+          form_data.append('id', id);
           form_data.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
           console.log(form_data);
           $.ajax({
