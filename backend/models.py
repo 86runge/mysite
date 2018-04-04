@@ -40,7 +40,9 @@ class CustomerService(models.Model):
 
 
 class MessageManage(models.Model):
-    message_group = models.IntegerField(_(u'消息分组'), choices=MESSAGE_GROUP)
-    message_note = models.TextField(_(u'消息内容'))
-    message_start = models.DateTimeField(_(u'消息开始时间'), blank=True, null=True)
-    message_end = models.TextField(_(u'消息结束时间'), blank=True, null=True)
+    msg_group = models.IntegerField(_(u'消息分组'), choices=MESSAGE_GROUP)
+    msg_title = models.CharField(_(u'消息标题'), max_length=100)
+    msg_note = models.TextField(_(u'消息内容'))
+    msg_created = models.DateTimeField(_(u'创建时间'), auto_now_add=True)
+    msg_start = models.DateTimeField(_(u'消息开始时间'), blank=True, null=True)
+    msg_end = models.DateTimeField(_(u'消息结束时间'), blank=True, null=True)

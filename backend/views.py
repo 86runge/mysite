@@ -2,7 +2,7 @@
 import datetime
 import logging
 
-from backend.models import CustomerService
+from backend.models import CustomerService, MessageManage, MESSAGE_GROUP
 from common.utils.utils_file import FileUploadUtil
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -159,16 +159,14 @@ class UserManageView(TemplateView):
         try:
             if 'action' in request.POST:
                 action = request.POST.get('action')
-                if action == 'add_user':
-                    return self._add_user(request)
-                # if action == 'get_customer_service':
-                #     return self._get_customer_service(request)
-                # if action == 'update_customer_service':
-                #     return self._update_customer_service(request)
-                # if action == 'delete_customer_service':
-                #     return self._delete_customer_service(request)
-                # if action == 'switch_customer_service':
-                #     return self._switch_customer_service(request)
+                # if action == 'add_user':
+                #     return self._add_user(request)
+                if action == 'get_user':
+                    return self._get_user(request)
+                if action == 'update_user':
+                    return self._update_user(request)
+                if action == 'delete_user':
+                    return self._delete_user(request)
                 else:
                     result = {
                         'status': 0,
@@ -184,21 +182,60 @@ class UserManageView(TemplateView):
             logger.exception(e)
             raise Http404
 
-    def _add_user(self, request):
+    def _get_user(self, request):
         try:
+            id = request.POST.get('id')
+            user = User.objects.filter(id=id)[0]
+            user_result = {
+                'username': user.username,
+                'password': user.password,
+                'nick': user.nick,
+                'phone': user.phone,
+                'email': user.email,
+                'is_staff': user.is_staff,
+                'is_active': user.is_active,
+            }
+            return JsonResponse(user_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_user(self, request):
+        try:
+            id = request.POST.get('id')
             user = {
                 'username': request.POST.get('username'),
                 'password': request.POST.get('password'),
                 'nick': request.POST.get('nick'),
                 'phone': request.POST.get('phone'),
                 'email': request.POST.get('email'),
+                'is_staff': request.POST.get('is_staff') or True,
                 'is_active': request.POST.get('is_active'),
                 'date_joined': datetime.datetime.now()
             }
-            User.objects.create_user(**user)
+            User.objects.filter(id=id).update(**user)
             result = {
                 'status': 0,
-                'msg': '添加成功'
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_user(self, request):
+        try:
+            id = request.POST.get('id')
+            User.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该用户正在被使用，无法删除'
             }
             return JsonResponse(result)
         except Exception as e:
@@ -333,6 +370,12 @@ class StaffManageView(TemplateView):
             result = {
                 'status': 0,
                 'msg': '删除成功'
+            }
+            return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该员工正在被使用，无法删除'
             }
             return JsonResponse(result)
         except Exception as e:
@@ -622,6 +665,12 @@ class RoleManageView(TemplateView):
                 'msg': '删除成功'
             }
             return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该角色正在被使用，无法删除'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404
@@ -686,6 +735,12 @@ class RoleManageView(TemplateView):
                 'msg': '删除成功'
             }
             return JsonResponse(result)
+        except ProtectedError:
+            result = {
+                'status': 1,
+                'msg': '该部门正在被使用，无法删除'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404
@@ -700,7 +755,110 @@ class MessageManageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         try:
-            return render(request, self.template_name, {})
+            msg = MessageManage.objects.all()
+            msg_group = {}
+            msg_group['msg_choice'] = MESSAGE_GROUP
+            return render(request, self.template_name, {
+                'msg': msg,
+                'msg_group': msg_group
+            })
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def post(self, request, *args, **kwargs):
+        try:
+            if 'action' in request.POST:
+                action = request.POST.get('action')
+                if action == 'add_message':
+                    return self._add_message(request)
+                if action == 'get_message':
+                    return self._get_message(request)
+                if action == 'update_message':
+                    return self._update_message(request)
+                if action == 'delete_message':
+                    return self._delete_message(request)
+                else:
+                    result = {
+                        'status': 0,
+                        'msg': '请求action错误'
+                    }
+            else:
+                result = {
+                    'status': 0,
+                    'msg': '请求错误'
+                }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _add_message(self, request):
+        try:
+            message = {
+                'msg_group': request.POST.get('msg_group'),
+                'msg_title': request.POST.get('msg_title'),
+                'msg_note': request.POST.get('msg_note'),
+                'msg_start': request.POST.get('msg_start'),
+                'msg_end': request.POST.get('msg_end'),
+                'msg_created': datetime.datetime.now()
+            }
+            MessageManage.objects.create(**message)
+            result = {
+                'status': 0,
+                'msg': '添加成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _get_message(self, request):
+        try:
+            id = request.POST.get('id')
+            message = MessageManage.objects.filter(id=id)[0]
+            message_result = {
+                'msg_group': message.msg_group,
+                'msg_title': message.msg_title,
+                'msg_note': message.msg_note,
+                'msg_start': message.msg_start,
+                'msg_end': message.msg_end,
+                'msg_created': message.msg_created
+            }
+            return JsonResponse(message_result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _update_message(self, request):
+        try:
+            id = request.POST.get('id')
+            message = {
+                'msg_group': request.POST.get('msg_group'),
+                'msg_title': request.POST.get('msg_title'),
+                'msg_note': request.POST.get('msg_note'),
+                'msg_start': request.POST.get('msg_start'),
+                'msg_end': request.POST.get('msg_end')
+            }
+            MessageManage.objects.filter(id=id).update(**message)
+            result = {
+                'status': 0,
+                'msg': '修改成功'
+            }
+            return JsonResponse(result)
+        except Exception as e:
+            logger.exception(e)
+            raise Http404
+
+    def _delete_message(self, request):
+        try:
+            id = request.POST.get('id')
+            MessageManage.objects.filter(id=id).delete()
+            result = {
+                'status': 0,
+                'msg': '删除成功'
+            }
+            return JsonResponse(result)
         except Exception as e:
             logger.exception(e)
             raise Http404

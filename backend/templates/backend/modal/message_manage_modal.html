@@ -1,0 +1,50 @@
+<div class="modal fade" id="message_manage_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">标题</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_message_manage" method="post" class="form-horizontal">
+          <input type="hidden" id="update_id">
+          <div class="form-group">
+            <label for="id_msg_group" class="col-sm-3 control-label">消息分组：</label>
+            <div class="col-sm-9">
+              <select class="form-control middle" name="msg_group" id="id_msg_group">
+                <option value="">--请选择--</option>
+                {% for choice in msg_group.msg_choice %}
+                  <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_msg_title" class="col-sm-3 control-label">消息标题：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_msg_title" name="msg_title" placeholder="请输入消息标题">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_msg_note" class="col-sm-3 control-label">消息内容：</label>
+            <div class="col-sm-8">
+              <textarea class="form-control" name="msg_note" id="id_msg_note" rows="5" placeholder="请输入消息内容"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_msg_start" class="col-sm-3 control-label">起止时间：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_msg_start" name="msg_start" placeholder="请输入消息开启时间">
+              <input type="text" class="form-control middle mt10" id="id_msg_end" name="msg_end" placeholder="请输入消息关闭时间">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="submit_add_message">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_update_message">提交</button>
+      </div>
+    </div>
+  </div>
+</div>

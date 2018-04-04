@@ -27,3 +27,11 @@
             但此时ajax要设置以下属性：
             contentType: false,
             processData: false,
+
+models:
+    生成0001等文件
+    python manage.py makemigrations
+    根据0001等文件生成表
+    python manage.py migrate
+    如果没有生成表则执行下面的语句生成sql
+    python manage.py sqlmigrate app_name 0001

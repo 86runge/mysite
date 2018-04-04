@@ -94,6 +94,14 @@ ul, ol {
 }
 
 /*表单样式*/
+.form-control {
+  font-size: 12px;
+}
+
+.control-label {
+  font-weight: normal;
+}
+
 .form-control.long {
   width: 500px;
 }

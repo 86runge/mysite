@@ -7,99 +7,47 @@
   {% include 'backend/sidebar/info_manage_bar.html' %}
   <div id="mainbox">
     <h1>消息管理</h1>
+    <button class="btn btn-primary" id="add_message">添加消息</button>
     <table class="table table-bordered table-hover tc">
       <caption>派生科技2月份进账统计</caption>
       <thead>
       <tr>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
+        <th>消息分组</th>
+        <th>消息标题</th>
+        <th>消息内容</th>
+        <th>创建时间</th>
+        <th>持续时间</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="warning">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="danger">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
+      {% for data in msg %}
+        <tr data-id="{{ data.id }}">
+          <td>{{ data.get_msg_group_display }}</td>
+          <td>{{ data.msg_title }}</td>
+          <td>{{ data.msg_note }}</td>
+          <td>{{ data.msg_created }}</td>
+          <td>{{ data.msg_start }} - {{ data.msg_end }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_message">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_message">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
 {% endblock %}
 
-{% block modal %}{% endblock %}
+{% block modal %}
+  {% include 'backend/modal/message_manage_modal.html' %}
+{% endblock %}
 {% block js %}{% endblock %}
