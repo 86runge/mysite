@@ -86,4 +86,4 @@ gulp.task('watch', function () {
 // 启动任务
 gulp.task('default', ['less', 'js', 'watch']);
 
-// cnpm install gulp gulp-autoprefixer gulp-less gulp-clean-css gulp-concat gulp-uglify gulp-rename del --save-dev
+// cnpm install gulp gulp-autoprefixer gulp-less gulp-clean-css gulp-concat gulp-uglify gulp-rename --save-dev

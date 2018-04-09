@@ -30,9 +30,9 @@
           <td>{{ data.user.nick }}</td>
           <td>{{ data.user.username }}</td>
           <td>{{ data.user.phone }}</td>
-          <td>{{ data.department }}</td>
-          <td>{{ data.role }}</td>
-          <td>{{ data.superior }}</td>
+          <td>{{ data.department.name }}</td>
+          <td>{{ data.role.name }}</td>
+          <td>{% if data.superior.name %}data.superior.name{% else %}无{% endif %}</td>
           <td>{{ data.user.email }}</td>
           <td>{% if data.user.is_active %}是{% else %}否{% endif %}</td>
           <td>{{ data.user.date_joined }}</td>

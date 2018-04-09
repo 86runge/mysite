@@ -7,99 +7,63 @@
   {% include 'backend/sidebar/goods_manage_bar.html' %}
   <div id="mainbox">
     <h1>商品列表</h1>
+    <button class="btn btn-primary" id="add_good">添加商品</button>
     <table class="table table-bordered table-hover tc">
       <caption>派生科技2月份进账统计</caption>
       <thead>
       <tr>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
+        <th>商品名</th>
+        <th>商品价格</th>
+        <th>商品货号</th>
+        <th>商品主图</th>
+        <th>预购数量限制</th>
+        <th>运费计价方式</th>
+        <th>发货时间</th>
+        <th>上架时间</th>
+        <th>下架时间</th>
+        <th>退款比率</th>
+        <th>PC端宝贝详情页静态文件路径</th>
+        <th>手机端宝贝详情页静态文件路径</th>
+        <th>备注</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="warning">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="danger">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
+      {% for data in good_list %}
+        <tr>
+          <td>{{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.bit }}</td>
+          <td>{{ data.photo }}</td>
+          <td>{{ data.preorder_limit }}</td>
+          <td>{{ data.freight_pricing_method.name }}</td>
+          <td>{{ data.delivery_time }}</td>
+          <td>{{ data.online_time }}</td>
+          <td>{{ data.offline_time }}</td>
+          <td>{{ data.refund_rate }}</td>
+          <td>{{ data.pc_page }}</td>
+          <td>{{ data.mobile_page }}</td>
+          <td>{{ data.note }}</td>
+          <td>
+            <div class="btn-group">
+              <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                管理
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:;" class="J_update_department">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_department">删除</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
 {% endblock %}
 
-{% block modal %}{% endblock %}
+{% block modal %}
+  {% include 'backend/modal/good_manage_modal.html' %}
+{% endblock %}
 {% block js %}{% endblock %}

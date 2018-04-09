@@ -61,10 +61,10 @@ define([], function () {
             "required": true,
             "isUsername": true
           },
-          password: {
-            "required": true,
-            "isPassword": true
-          },
+          // password: {
+          //   "required": true,
+          //   "isPassword": true
+          // },
           phone: {
             "required": true,
             "isMobile": true
@@ -80,9 +80,9 @@ define([], function () {
           username: {
             "required": "请输入登录名"
           },
-          password: {
-            "required": "请输入登录密码"
-          },
+          // password: {
+          //   "required": "请输入登录密码"
+          // },
           phone: {
             "required": "请输入员工电话"
           }

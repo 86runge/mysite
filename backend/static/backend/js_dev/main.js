@@ -15,23 +15,28 @@ require.config({
     "bootstrap": "/static/common/plugins/bootstrap/js/bootstrap.min",
     "switch": "/static/common/plugins/bootstrap-switch/js/bootstrap-switch.min",
     "validation": "/static/common/plugins/jquery-validation/jquery.validate.min",
+    "daterangepicker": "/static/common/plugins/daterangepicker/jquery.daterangepicker",
+    "datetimepicker": "/static/common/plugins/datetimepicker/jquery.datetimepicker.min",
     "common": "/static/common/js/common"
   },
   shim: {
     "bootstrap": {
       deps: ['jquery']
     },
-    "switch": {
-      deps: ['bootstrap', 'css!/static/common/plugins/bootstrap-switch/css/bootstrap-switch.min.css']
-    },
-    "validation": {
-      deps: ['jquery']
-    },
     "common": {
       deps: ['jquery', 'validation']
+    },
+    "switch": {
+      deps: ['css!/static/common/plugins/bootstrap-switch/css/bootstrap-switch.min.css']
+    },
+    "daterangepicker": {
+      deps: ['/static/common/plugins/daterangepicker/moment.min.js', '/static/common/plugins/jquery-ui/jquery-ui.min.js', 'css!/static/common/plugins/jquery-ui/jquery-ui.min.css', 'css!/static/common/plugins/daterangepicker/jquery.daterangepicker.css']
+    },
+    "datetimepicker": {
+      deps: ['/static/common/plugins/jquery-ui/jquery-ui.min.js', 'css!/static/common/plugins/jquery-ui/jquery-ui.min.css', 'css!/static/common/plugins/datetimepicker/jquery.datetimepicker.css']
     }
   },
-  waitSeconds: 0
+  urlArgs: "v=" + (new Date()).getTime()
 });
 
 // 另一种则是直接改变基目录（baseUrl）。

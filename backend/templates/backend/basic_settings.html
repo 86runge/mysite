@@ -32,6 +32,24 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="id_service_time" class="col-sm-3 control-label">服务时间段：</label>
+            <div class="col-sm-9">
+              <select class="form-control middle" name="service_time" id="service_time">
+                <option value="">--请选择--</option>
+                {% for choice in obj_group.obj_choice %}
+                  <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-3 control-label">是否激活：</label>
+            <div class="col-sm-9">
+              <label for="yes" class="normal"><input type="radio" name="is_active" id="r_active_yes" value="1" checked>开启</label>
+              <label for="no" class="normal"><input type="radio" name="is_active" id="r_active_no" value="0">关闭</label>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="id_cs_note" class="col-sm-3 control-label">备注：</label>
             <div class="col-sm-9">
               <input type="text" class="form-control middle" id="id_cs_note" name="cs_note" placeholder="请输入备注信息">

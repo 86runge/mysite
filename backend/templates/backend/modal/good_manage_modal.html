@@ -1,0 +1,87 @@
+<div class="modal fade" id="good_manage_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">标题</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_good_manage" method="post" class="form-horizontal">
+          <input type="hidden" id="update_id">
+          <input class="hidden" type="file" id="id_good_photo" name="good_photo">
+          <div class="form-group">
+            <label for="id_name" class="col-sm-3 control-label">商品名称：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_name" name="name" placeholder="请输入商品名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_price" class="col-sm-3 control-label">商品价格：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_price" name="price" placeholder="请输入商品价格">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_bit" class="col-sm-3 control-label">商品货号：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_bit" name="bit" placeholder="请输入商品货号">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_photo" class="col-sm-3 control-label">商品主图：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_photo" name="photo" placeholder="请上传商品主图">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_preorder_limit" class="col-sm-3 control-label">预购数量限制：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_preorder_limit" name="preorder_limit" placeholder="请输入预购数量限制">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_freight_pricing_method" class="col-sm-3 control-label">运费计价方式：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_freight_pricing_method" name="freight_pricing_method" placeholder="请输入运费计价方式">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_delivery_time" class="col-sm-3 control-label">发货时间：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_delivery_time" name="delivery_time" placeholder="请输入发货时间">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_online_time" class="col-sm-3 control-label">上架时间：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_online_time" name="online_time" placeholder="请输入上架时间">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_offline_time" class="col-sm-3 control-label">下架时间：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_offline_time" name="offline_time" placeholder="请输入下架时间">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_refund_rate" class="col-sm-3 control-label">退款比率：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_refund_rate" name="refund_rate" placeholder="请输入退款比率">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_note" class="col-sm-3 control-label">备注：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control middle" id="id_note" name="note" placeholder="请输入备注">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="submit_add_good">提交</button>
+        <button type="button" class="btn btn-primary" id="submit_update_good">提交</button>
+      </div>
+    </div>
+  </div>
+</div>

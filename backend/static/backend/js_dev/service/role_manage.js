@@ -3,8 +3,6 @@ define([], function () {
     // 添加权限
     $("#add_permission").on('click', function () {
       $('#permission_manage_modal').find('.modal-title').text('添加权限');
-      $("#form_permission_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_permission").show();
       $("#submit_update_permission").hide();
       $('#permission_manage_modal').modal({backdrop: 'static', keyboard: false});
@@ -134,8 +132,6 @@ define([], function () {
     // 添加用户群
     $("#add_group").on('click', function () {
       $('#group_manage_modal').find('.modal-title').text('添加用户群');
-      $("#form_group_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_group").show();
       $("#submit_update_group").hide();
       $('#group_manage_modal').modal({backdrop: 'static', keyboard: false});
@@ -263,8 +259,6 @@ define([], function () {
     // 添加角色
     $("#add_role").on('click', function () {
       $('#role_manage_modal').find('.modal-title').text('添加角色');
-      $("#form_role_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_role").show();
       $("#submit_update_role").hide();
       $('#role_manage_modal').modal({backdrop: 'static', keyboard: false});
@@ -395,8 +389,6 @@ define([], function () {
     // 添加部门
     $("#add_department").on('click', function () {
       $('#department_manage_modal').find('.modal-title').text('添加权限');
-      $("#form_department_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_department").show();
       $("#submit_update_department").hide();
       $('#department_manage_modal').modal({backdrop: 'static', keyboard: false});

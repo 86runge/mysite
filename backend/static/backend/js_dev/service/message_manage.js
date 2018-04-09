@@ -3,8 +3,6 @@ define([], function () {
     // 添加消息
     $("#add_message").on('click', function () {
       $('#message_manage_modal').find('.modal-title').text('添加消息');
-      $("#form_message_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_message").show();
       $("#submit_update_message").hide();
       $('#message_manage_modal').modal({backdrop: 'static', keyboard: false});
@@ -111,7 +109,7 @@ define([], function () {
     $(".J_delete_message").on('click', function () {
       var this_id = $(this).parents('tr').attr('data-id');
       $.ajax({
-        url: '/backend/role_manage/',
+        url: '/backend/message_manage/',
         type: 'post',
         data: {
           'id': this_id,

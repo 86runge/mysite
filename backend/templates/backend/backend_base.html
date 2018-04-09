@@ -15,6 +15,9 @@
 {% comment %}页面主要内容开始{% endcomment %}
 <div id="wrap">
   {% comment %}页面头部开始{% endcomment %}
+  {% if request.user.is_admin %}
+    我出现了
+  {% endif %}
   <div id="header" class="clearfix">
     <div id="logo" class="pull-left tc">
       <img src="{{ 'common/images/logo.jpg'|static_url }}" alt="">
@@ -64,10 +67,6 @@
 {% comment %}模态框结束{% endcomment %}
 {% comment %}js加载开始{% endcomment %}
 <script src="{{ 'common/plugins/require/require.js'|static_url }}" defer async="true" data-main="{{ 'backend/js/main.min.js'|static_url }}"></script>
-{#<script src="{{ 'common/plugins/jquery/jquery.min.js'|static_url }}"></script>#}
-{#<script src="{{ 'common/plugins/bootstrap/js/bootstrap.min.js'|static_url }}"></script>#}
-{#<script src="{{ 'common/plugins/jquery-validation/jquery.validate.min.js'|static_url }}"></script>#}
-{#<script src="{{ 'common/js/common.js'|static_url }}"></script>#}
 {% block js %}{% endblock %}
 {% comment %}js加载结束{% endcomment %}
 </body>

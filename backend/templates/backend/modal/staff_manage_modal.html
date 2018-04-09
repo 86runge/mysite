@@ -35,19 +35,34 @@
           <div class="form-group">
             <label for="id_department" class="col-sm-3 control-label">部门：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_department" name="department" placeholder="请输入电话">
+              <select class="form-control middle" name="department" id="id_department">
+                <option value="">--请选择--</option>
+                {% for d in department %}
+                  <option value="{{ d.id }}">{{ d.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="form-group">
             <label for="id_role" class="col-sm-3 control-label">角色：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_role" name="role" placeholder="请输入电话">
+              <select class="form-control middle" name="role" id="id_role">
+                <option value="">--请选择--</option>
+                {% for r in role %}
+                  <option value="{{ r.id }}">{{ r.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="form-group">
             <label for="id_superior" class="col-sm-3 control-label">直属上级：</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control middle" id="id_superior" name="superior" placeholder="请输入电话">
+              <select class="form-control middle" name="superior" id="id_superior">
+                <option value="">--请选择--</option>
+                {% for s in staff %}
+                  <option value="{{ s.id }}">{{ s.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="form-group">

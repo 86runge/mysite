@@ -25,6 +25,10 @@ class Permission(models.Model):
     objects = PermissionManager()
 
     class Meta:
+        """
+        通过一个内嵌类 "class Meta" 给你的 model 定义元数据, 类似下面这样:
+        元数据就是用来定义数据的数据。比如，有一条学生信息记录，其中包括字段姓名（name）、年龄（age）、性别（male）、班级（class）等，那么name、age、male、class就是元数据。通过它们的描述，一条关于学生信息的数据记录就产生
+        """
         verbose_name = _('permission')
         verbose_name_plural = _('permissions')
         unique_together = (('content_type', 'codename'),)

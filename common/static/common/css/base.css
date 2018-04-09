@@ -140,4 +140,6 @@ table thead th, table thead td {
 /*表单验证--validation*/
 label.error {
   display: block;
+  font-weight: normal;
+  color: #f00;
 }

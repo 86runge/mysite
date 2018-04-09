@@ -59,6 +59,12 @@ define(['switch'], function () {
         },
         cs_qq: {
           "required": true
+        },
+        weixin_img: {
+          "required": true
+        },
+        service_time: {
+          "required": true
         }
       },
       messages: {
@@ -67,6 +73,12 @@ define(['switch'], function () {
         },
         cs_qq: {
           "required": "请输入客服QQ"
+        },
+        weixin_img: {
+          "required": "请上传微信二维码图片"
+        },
+        service_time: {
+          "required": "请选择服务时间段"
         }
       },
       submitHandler: function () {

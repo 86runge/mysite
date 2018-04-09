@@ -2,8 +2,6 @@ define([], function () {
   var fn = function () {
     $("#add_staff").on('click', function () {
       $('#staff_manage_modal').find('.modal-title').text('添加用户');
-      $("#form_staff_manage")[0].reset();
-      $("label.error").hide();
       $("#submit_add_staff").show();
       $("#submit_update_staff").hide();
       $('#staff_manage_modal').modal({backdrop: 'static', keyboard: false});
@@ -29,10 +27,10 @@ define([], function () {
         // contentType: false,
         // processData: false,
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           $("#id_nick").val(data.nick);
           $("#id_username").val(data.username);
-          $("#id_password").val(data.password);
+          $("#id_password").attr('placeholder', '需要修改密码请输入新密码');
           $("#id_phone").val(data.phone);
           $("#id_department").val(data.department);
           $("#id_role").val(data.role);
@@ -63,6 +61,10 @@ define([], function () {
     });
 
     var form_validate = function (action, id) {
+      var pwd_validate = true;
+      if (id) {
+        pwd_validate = false;
+      }
       $("#form_staff_manage").validate({
         rules: {
           nick: {
@@ -73,7 +75,7 @@ define([], function () {
             "isUsername": true
           },
           password: {
-            "required": true,
+            "required": pwd_validate,
             "isPassword": true
           },
           phone: {
@@ -82,6 +84,12 @@ define([], function () {
           },
           email: {
             "isEmail": true
+          },
+          department: {
+            "required": true
+          },
+          role: {
+            "required": true
           }
         },
         messages: {
@@ -96,6 +104,12 @@ define([], function () {
           },
           phone: {
             "required": "请输入员工电话"
+          },
+          department: {
+            "required": "请输入所属部门"
+          },
+          role: {
+            "required": "请输入所属角色"
           }
         },
         submitHandler: function () {
@@ -114,7 +128,7 @@ define([], function () {
             success: function (data) {
               alert("操作成功");
               $('#staff_manage_modal').modal('hide');
-              // window.location.reload();
+              window.location.reload();
             },
             error: function (data) {
               console.log("发生错误");

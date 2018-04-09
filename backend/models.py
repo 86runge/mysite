@@ -6,11 +6,13 @@ MORNING = 1
 AFTERNOON = 2
 DAY = 3
 NIGHT = 4
+ALL = 5
 SERVICE_TIME = [
     (MORNING, '早上'),
     (AFTERNOON, '下午'),
     (DAY, '白天'),
-    (NIGHT, '晚上')
+    (NIGHT, '晚上'),
+    (ALL, '全天')
 ]
 
 # 消息分组
