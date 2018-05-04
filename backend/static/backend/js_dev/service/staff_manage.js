@@ -139,6 +139,31 @@ define([], function () {
       });
     };
 
+    // 员工删除
+    $(".J_delete_staff").on('click', function () {
+      var this_id = $(this).parents('tr').attr('data-id');
+      $.ajax({
+        url: '/backend/staff_manage/',
+        type: 'post',
+        data: {
+          'id': this_id,
+          'action': 'delete_staff',
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        },
+        dataType: 'json',
+        // contentType: false,
+        // processData: false,
+        success: function (data) {
+          alert(data.msg);
+          window.location.reload();
+        },
+        error: function (data) {
+          console.log("发生错误");
+          console.log(data);
+        }
+      })
+    });
+
   };
   return {
     init: fn

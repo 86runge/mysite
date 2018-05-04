@@ -6,9 +6,9 @@
         <h4 class="modal-title">标题</h4>
       </div>
       <div class="modal-body">
-        <form action="" id="form_good_manage" method="post" class="form-horizontal">
+        <form action="" id="form_good_manage" method="post" enctype="multipart/form-data" class="form-horizontal">
           <input type="hidden" id="update_id">
-          <input class="hidden" type="file" id="id_good_photo" name="good_photo">
+          <input runat='server' class="hidden" type="file" id="id_good_photo" name="good_photo">
           <div class="form-group">
             <label for="id_name" class="col-sm-3 control-label">商品名称：</label>
             <div class="col-sm-9">

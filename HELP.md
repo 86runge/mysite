@@ -85,9 +85,9 @@ by zhongchao on 2017-12-05
 
 gulp 构建
 
-- 1 安装 node 环境、npm , 推荐使用 cnpm 
+- 1 安装 node 环境、npm , 推荐使用 cnpm
 - 2 在 package.json 所在目录里运行
  ````
 cnpm install gulp gulp-less gulp-autoprefixer gulp-clean-css gulp-concat gulp-uglify gulp-rename del --save-dev
 ````
-- 3 直接在gulpfile.js所在目录里运行 gulp 即可运行 
+- 3 直接在gulpfile.js所在目录里运行 gulp 即可运行

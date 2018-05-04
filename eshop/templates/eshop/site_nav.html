@@ -1,0 +1,23 @@
+{% load extras %}
+<div id="sitenav">
+  <div id="sitenavbox" class="main-w clearfix">
+    <div id="loginbar" class="pull-left">
+      <span class="mr10">欢迎来到网上电子商城</span>
+      {% if request.user.is_authenticated == True %}
+        <span class="mr5">{{ request.user.username }}</span>
+        <a href="{% url 'eshop:logout' %}" class="mr5">退出</a>
+      {% else %}
+        <a href="{% url 'eshop:login' %}" class="mr5">请登录</a>
+        <a href="{% url 'eshop:register' %}" class="mr5">免费注册</a>
+      {% endif %}
+    </div>
+    <div id="sitemap" class="pull-right space">
+      <a href="{% url 'eshop:member_center' %}" class="ml5">会员中心</a>
+      <a href="#" class="ml5 bl pl5">收藏夹</a>
+      <a href="#" class="ml5 bl pl5">购物车</a>
+      <a href="#" class="ml5 bl pl5">联系客服</a>
+      <a href="#" class="ml5 bl pl5">切换主题</a>
+      <a href="{% url 'backend:index' %}" class="ml5 bl pl5">前往后台</a>
+    </div>
+  </div>
+</div>

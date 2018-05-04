@@ -22,27 +22,27 @@
         <th>上架时间</th>
         <th>下架时间</th>
         <th>退款比率</th>
-        <th>PC端宝贝详情页静态文件路径</th>
-        <th>手机端宝贝详情页静态文件路径</th>
+        {#        <th>PC端宝贝详情页静态文件路径</th>#}
+        {#        <th>手机端宝贝详情页静态文件路径</th>#}
         <th>备注</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
       {% for data in good_list %}
-        <tr>
+        <tr data-id="{{ data.id }}">
           <td>{{ data.name }}</td>
           <td>{{ data.price }}</td>
           <td>{{ data.bit }}</td>
-          <td>{{ data.photo }}</td>
+          <td>{% if data.photo %}<img class="good-main-photo" src="/media/{{ data.photo }}" alt="">{% else %}无商品图片{% endif %}</td>
           <td>{{ data.preorder_limit }}</td>
           <td>{{ data.freight_pricing_method.name }}</td>
           <td>{{ data.delivery_time }}</td>
           <td>{{ data.online_time }}</td>
           <td>{{ data.offline_time }}</td>
           <td>{{ data.refund_rate }}</td>
-          <td>{{ data.pc_page }}</td>
-          <td>{{ data.mobile_page }}</td>
+          {#          <td>{% if data.pc_page %}{{ data.pc_page }}{% else %}无{% endif %}</td>#}
+          {#          <td>{% if data.mobile_page %}{{ data.mobile_page }}{% else %}无{% endif %}</td>#}
           <td>{{ data.note }}</td>
           <td>
             <div class="btn-group">
@@ -51,8 +51,8 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="javascript:;" class="J_update_department">修改</a></li>
-                <li><a href="javascript:;" class="J_delete_department">删除</a></li>
+                <li><a href="javascript:;" class="J_update_good">修改</a></li>
+                <li><a href="javascript:;" class="J_delete_good">删除</a></li>
               </ul>
             </div>
           </td>

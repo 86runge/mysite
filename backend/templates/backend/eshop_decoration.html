@@ -3,102 +3,70 @@
 {% block title %}后台管理--商城装修{% endblock %}
 {% block css %}{% endblock %}
 {% block eshop_manage %}active{% endblock %}
+
 {% block content %}
-  {% include 'backend/sidebar/eshop_manage_bar.html' %}
-  <div id="mainbox">
-    <h1>商城装修</h1>
-    <table class="table table-bordered table-hover tc">
-      <caption>派生科技2月份进账统计</caption>
-      <thead>
-      <tr>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-        <th>header</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="warning">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr class="danger">
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    {% include 'backend/sidebar/eshop_manage_bar.html' %}
+    <div id="mainbox">
+        <h1>商城装修</h1>
+        <h3>文件上传</h3>
+        <form action="" enctype="multipart/form-data" id="form_upload_file">
+            <input type="file" class="hidden" name="upload_file">
+            <button type="button" class="btn btn-info" id="select_upload_file">请选择上传文件</button>
+            <button type="button" class="btn btn-primary" id="upload_file">上传</button>
+        </form>
+        <h3>文件下载</h3>
+        <form action="" id="form_download_file">
+            <img class="wei-img" src="/media/upload/goods/20180410100247.jpg" alt="图片未显示出来">
+            <a target="_blank" class="btn btn-primary" id="download_file">下载</a>
+        </form>
+        <h3>表格导入</h3>
+        <form enctype="multipart/form-data" id="import_excel">
+            {% csrf_token %}
+            <input type="file" class="hidden" name="excel">
+            <button type="button" class="btn btn-info" id="select_import_file">请选择导入文件</button>
+            <button type="button" class="btn btn-info J_import">导入</button>
+        </form>
+        <h3>获取的表格</h3>
+        <table class="table table-bordered table-hover tc">
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>用户名</th>
+                <th>电话</th>
+                <th>电子邮箱</th>
+                <th>是否是员工</th>
+                <th>是否激活</th>
+                <th>添加时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="import_tbody">
+            {% for data in table_list %}
+                <tr data-id="{{ data.id | floatformat:0 }}">
+                    <td>{{ data.姓名 }}</td>
+                    <td>{{ data.用户名 }}</td>
+                    <td>{{ data.电话 }}</td>
+                    <td>{{ data.电子邮箱 }}</td>
+                    <td>{% if data.是否是员工 %}是{% else %}否{% endif %}</td>
+                    <td>{% if data.是否激活 %}是{% else %}否{% endif %}</td>
+                    <td>{{ data.添加时间 }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="dropdown-toggle btn-s1" data-toggle="dropdown">
+                                管理
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" class="J_update_user">修改</a></li>
+                                <li><a href="javascript:;" class="J_delete_user">删除</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 {% block modal %}{% endblock %}

@@ -1,8 +1,8 @@
 define([], function () {
-  var fn = function () {
+    var fn = function () {
 
-  };
-  return {
-    init: fn
-  };
+    };
+    return {
+        init: fn
+    };
 });

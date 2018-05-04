@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'wechat.apps.WechatConfig',
     'testpage.apps.TestpageConfig',
+    'captcha'
 ]
 
 MIDDLEWARE = [
