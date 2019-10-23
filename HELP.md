@@ -26,7 +26,7 @@ by zhongchao on 2017-12-05
 ### 目录结构
 **示例：**
 
-    cts                                    项目根目录
+    mysite                                    项目根目录
      |- backend                            app根目录
          |- management                     manage.py指令扩展目录
          |   |- commands                   manage.py指令扩展目录
