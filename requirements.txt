@@ -8,3 +8,4 @@ Pillow==4.3.0
 django-redis==4.8.0
 xlrd==1.1.0
 xlwt==1.3.0
+captcha==0.3

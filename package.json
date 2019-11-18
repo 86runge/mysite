@@ -1,4 +1,21 @@
 {
+  "name": "site-django",
+  "version": "1.0.0",
+  "description": "django项目",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/86runge/site-django.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/86runge/site-django/issues"
+  },
+  "homepage": "https://github.com/86runge/site-django#readme",
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "^3.9.1",
