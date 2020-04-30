@@ -193,5 +193,4 @@ fabric.properties
 node_modules
 
 # other
-cts.mwb.bak
 .gitignore.orig

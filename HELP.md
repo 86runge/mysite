@@ -6,11 +6,11 @@
 ###### Step1
 项目环境为 **python3.6.3** ，当系统环境为 **python2.x** 时，建议将python3安装目录里的快捷方式 **python.exe** 重命名为 **python3.exe**。
 ###### Step2
-在pycharm中创建单独的虚拟开发环境 wxp_env，python解释器要选python3.6.3，pycharm默认会安装好pip。
+在pycharm中创建单独的虚拟开发环境 site_env，python解释器要选python3.6.3，pycharm默认会安装好pip。
 ###### Step3
-在 wxp_env 文件夹下打开Git Bash命令行，利用git clone命令下载 wxp 项目代码到本地。在pycharm中打开wxp项目，将当前项目开发环境设置为Step2中新建的 wxp_env。
+在 wxp_env 文件夹下打开Git Bash命令行，利用git clone命令下载 site 项目代码到本地。在pycharm中打开wxp项目，将当前项目开发环境设置为Step2中新建的 site_env。
 ###### Step4
-在pycharm中打开Terminal命令行，确认是在 wxp_env环境下，然后执行  
+在pycharm中打开Terminal命令行，确认是在 site_env环境下，然后执行  
 `pip install -r requirements.txt`
 ###### Step5
 在cmd或者bash中开启memcache，执行  
@@ -63,7 +63,7 @@
 配置文件
 
 - _django/utils/log.py_
-- _cts/cts/settings.py_
+- _site/site/settings.py_
 
 导入
     
